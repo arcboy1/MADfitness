@@ -1,5 +1,6 @@
 package com.example.madfitness.GUI;
 
+import com.example.madfitness.Database.DatabaseConnection;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -46,11 +47,22 @@ public class Login extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        loginButton.setOnAction(e -> {
+        loginButton.setOnAction(event -> {
             String username = usernameField.getText();
             String password = passwordField.getText();
             String databaseName = databaseField.getText();
             String location = locationField.getText();
+
+            String jdbcDriver="com.mysql.cj.jdbc.Driver";
+            String connectionURL="jdbc:mysql://" + location + "/" + databaseName + "?serverTimezone=UTC";
+
+
+            try{
+                DatabaseConnection databaseConnection=new DatabaseConnection(jdbcDriver,connectionURL,username,password);
+                System.out.println("Connection Succesful");
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
         });
     }
