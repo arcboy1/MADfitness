@@ -49,6 +49,8 @@ public class DatabaseConnection {
         DatabaseMetaData md = connection.getMetaData();
 
         //look in the database for a table that matches the tableName
+
+        //TODO fix this to be whatever db name the user inputs in login GUI
         ResultSet resultSet = md.getTables("ntaggartworkout", null, tableName, null);
 
         if (resultSet.next()) {
