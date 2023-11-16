@@ -30,12 +30,13 @@ public class DatabaseConnection {
 
     private DatabaseConnection() {}
 
+    //constructor without createTable methods to test connection
     private DatabaseConnection(String jdbcDriver, String connectionURL, String username, String password, boolean test) {
         try {
             Class.forName(jdbcDriver);
             connection = DriverManager.getConnection(connectionURL, username, password);
 
-            System.out.println("Connection Successful");
+            System.out.println("Test Connection Successful");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -78,8 +79,12 @@ public class DatabaseConnection {
         }
     }
 
-    public static void testConnection(String jdbcDriver, String connectionURL, String username, String password){
-        new DatabaseConnection(jdbcDriver, connectionURL, username, password, true);
-        System.out.println("Test Connection Successful");
+    public static void testConnection(String jdbcDriver, String connectionURL, String username, String password) throws SQLException {
+        try (Connection connection = DriverManager.getConnection(connectionURL, username, password)) {
+            System.out.println("Test Connection Successful");
+        } catch (SQLException e) {
+            System.out.println("Test Connection Failed");
+            throw e;
+        }
     }
 }

@@ -7,8 +7,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.sql.SQLException;
 
 public class Login extends Application {
     /**
@@ -24,23 +28,28 @@ public class Login extends Application {
 
         // Create UI elements
         Label usernameLabel = new Label("Username:");
-        TextField usernameField = new TextField();
+        TextField usernameField = new TextField("ntaggart");
 
         Label passwordLabel = new Label("Password:");
         PasswordField passwordField = new PasswordField();
 
         Label databaseLabel = new Label("Database Name:");
-        TextField databaseField = new TextField();
+        TextField databaseField = new TextField("ntaggartmd");
 
         Label locationLabel = new Label("Database Location:");
-        TextField locationField = new TextField();
+        TextField locationField = new TextField("localhost");
 
         Button loginButton = new Button("Login");
         Button testConnectionButton=new Button("Test Connection");
+        loginButton.setDisable(true);
+
+        Text testConnectionResultText = new Text("");
 
         // Create a layout
         VBox vbox = new VBox(10);
-        vbox.getChildren().addAll(usernameLabel, usernameField, passwordLabel, passwordField, databaseLabel, databaseField, locationLabel, locationField,testConnectionButton, loginButton);
+        HBox hbox=new HBox(10);
+        hbox.getChildren().addAll(testConnectionButton, testConnectionResultText);
+        vbox.getChildren().addAll(usernameLabel, usernameField, passwordLabel, passwordField, databaseLabel, databaseField, locationLabel, locationField, hbox, loginButton);
 
         // Create a scene
         Scene scene = new Scene(vbox, 350, 350);
@@ -59,8 +68,12 @@ public class Login extends Application {
 
             try{
                 DatabaseConnection.testConnection(jdbcDriver,connectionURL,username,password);
-                System.out.println("Test Connection Succesful");
-            }catch (Exception e){
+                loginButton.setDisable(false);
+                testConnectionResultText.setText("Test Connection Succesful");
+            } catch (SQLException e) {
+                testConnectionResultText.setText("Test Connection Failed");
+                e.printStackTrace();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });
@@ -78,7 +91,6 @@ public class Login extends Application {
             try{
                 DatabaseConnection databaseConnection=new DatabaseConnection(jdbcDriver,connectionURL,username,password)
                         .setDatabaseName(databaseName);
-                System.out.println("Connection Succesful");
             }catch (Exception e){
                 e.printStackTrace();
             }
