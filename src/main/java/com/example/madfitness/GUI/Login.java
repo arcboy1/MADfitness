@@ -36,16 +36,34 @@ public class Login extends Application {
         TextField locationField = new TextField();
 
         Button loginButton = new Button("Login");
+        Button testConnectionButton=new Button("Test Connection");
 
         // Create a layout
         VBox vbox = new VBox(10);
-        vbox.getChildren().addAll(usernameLabel, usernameField, passwordLabel, passwordField, databaseLabel, databaseField, locationLabel, locationField, loginButton);
+        vbox.getChildren().addAll(usernameLabel, usernameField, passwordLabel, passwordField, databaseLabel, databaseField, locationLabel, locationField,testConnectionButton, loginButton);
 
         // Create a scene
-        Scene scene = new Scene(vbox, 300, 300);
+        Scene scene = new Scene(vbox, 350, 350);
 
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        testConnectionButton.setOnAction(event -> {
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+            String databaseName = databaseField.getText();
+            String location = locationField.getText();
+
+            String jdbcDriver = "com.mysql.cj.jdbc.Driver";
+            String connectionURL = "jdbc:mysql://" + location + "/" + databaseName + "?serverTimezone=UTC";
+
+            try{
+                DatabaseConnection.testConnection(jdbcDriver,connectionURL,username,password);
+                System.out.println("Test Connection Succesful");
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        });
 
         loginButton.setOnAction(event -> {
             String username = usernameField.getText();
@@ -58,7 +76,8 @@ public class Login extends Application {
 
 
             try{
-                DatabaseConnection databaseConnection=new DatabaseConnection(jdbcDriver,connectionURL,username,password);
+                DatabaseConnection databaseConnection=new DatabaseConnection(jdbcDriver,connectionURL,username,password)
+                        .setDatabaseName(databaseName);
                 System.out.println("Connection Succesful");
             }catch (Exception e){
                 e.printStackTrace();

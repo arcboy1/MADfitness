@@ -4,6 +4,7 @@ import java.sql.*;
 public class DatabaseConnection {
     private static DatabaseConnection instance;
     private Connection connection=null;
+    private String databaseName;
 
     public DatabaseConnection(String jdbcDriver,String connectionURL,String username,String password){
         try{
@@ -14,15 +15,31 @@ public class DatabaseConnection {
 
             createTable(DBConst.TABLE_USER, DBConst.CREATE_TABLE_USER, connection);
             createTable(DBConst.TABLE_WORKOUT, DBConst.CREATE_TABLE_WORKOUT, connection);
-            createTable(DBConst.TABLE_EXERCISE, DBConst.CREATE_TABLE_EXERCISE, connection);
             createTable(DBConst.TABLE_MUSCLE_GROUP, DBConst.CREATE_TABLE_MUSCLE_GROUP, connection);
+            createTable(DBConst.TABLE_EXERCISE, DBConst.CREATE_TABLE_EXERCISE, connection);
             createTable(DBConst.TABLE_WORKOUT_EXERCISE, DBConst.CREATE_TABLE_WORKOUT_EXERCISE, connection);
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
+    public DatabaseConnection setDatabaseName(String databaseName) {
+        this.databaseName = databaseName;
+        return this;
+    }
+
     private DatabaseConnection() {}
+
+    private DatabaseConnection(String jdbcDriver, String connectionURL, String username, String password, boolean test) {
+        try {
+            Class.forName(jdbcDriver);
+            connection = DriverManager.getConnection(connectionURL, username, password);
+
+            System.out.println("Connection Successful");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static DatabaseConnection getInstance() {
         if (instance == null) {
@@ -50,8 +67,7 @@ public class DatabaseConnection {
 
         //look in the database for a table that matches the tableName
 
-        //TODO fix this to be whatever db name the user inputs in login GUI
-        ResultSet resultSet = md.getTables("ntaggartworkout", null, tableName, null);
+        ResultSet resultSet = md.getTables(databaseName, null, tableName, null);
 
         if (resultSet.next()) {
             System.out.println(tableName + " table already exists");
@@ -60,5 +76,10 @@ public class DatabaseConnection {
             createTable.execute(tableQuery);
             System.out.println("The " + tableName + " table has been created");
         }
+    }
+
+    public static void testConnection(String jdbcDriver, String connectionURL, String username, String password){
+        new DatabaseConnection(jdbcDriver, connectionURL, username, password, true);
+        System.out.println("Test Connection Successful");
     }
 }
