@@ -17,6 +17,7 @@ public class DBConst {
 
     public static final String WORKOUT_COLUMN_START_TIME = "start_time";
     public static final String WORKOUT_COLUMN_END_TIME = "end_time";
+
     public static final String WORKOUT_COLUMN_DURATION="duration";
 
     //Exercise Table

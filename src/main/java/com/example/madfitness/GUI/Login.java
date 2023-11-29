@@ -26,7 +26,6 @@ public class Login extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Database Login");
 
-        // Create UI elements
         Label usernameLabel = new Label("Username:");
         TextField usernameField = new TextField("ntaggart");
 
@@ -45,18 +44,17 @@ public class Login extends Application {
 
         Text testConnectionResultText = new Text("");
 
-        // Create a layout
         VBox vbox = new VBox(10);
         HBox hbox=new HBox(10);
         hbox.getChildren().addAll(testConnectionButton, testConnectionResultText);
         vbox.getChildren().addAll(usernameLabel, usernameField, passwordLabel, passwordField, databaseLabel, databaseField, locationLabel, locationField, hbox, loginButton);
 
-        // Create a scene
         Scene scene = new Scene(vbox, 350, 350);
 
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        // when test connection button is pressed it runs the testConnection method to ensure the connection can be established before attempting to create the tables
         testConnectionButton.setOnAction(event -> {
             String username = usernameField.getText();
             String password = passwordField.getText();
@@ -78,6 +76,7 @@ public class Login extends Application {
             }
         });
 
+        // connects to db and creates tables by creating a databaseconnection object using the GUI user inputs
         loginButton.setOnAction(event -> {
             String username = usernameField.getText();
             String password = passwordField.getText();
@@ -91,11 +90,23 @@ public class Login extends Application {
             try{
                 DatabaseConnection databaseConnection=new DatabaseConnection(jdbcDriver,connectionURL,username,password)
                         .setDatabaseName(databaseName);
+                openUserLogin(primaryStage);
+
             }catch (Exception e){
                 e.printStackTrace();
             }
 
         });
+
     }
+    private void openUserLogin(Stage primaryStage) {
+        try {
+            UserLogin userLogin = new UserLogin();
+            userLogin.start(primaryStage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
