@@ -79,12 +79,12 @@ public class DatabaseConnection {
         }
     }
 
-    public static void testConnection(String jdbcDriver, String connectionURL, String username, String password) throws SQLException {
+    public static boolean testConnection(String jdbcDriver, String connectionURL, String username, String password) throws SQLException {
         try (Connection connection = DriverManager.getConnection(connectionURL, username, password)) {
-            System.out.println("Test Connection Successful");
+            return true;
         } catch (SQLException e) {
-            System.out.println("Test Connection Failed");
-            throw e;
+            e.printStackTrace();
+            return false;
         }
     }
 }

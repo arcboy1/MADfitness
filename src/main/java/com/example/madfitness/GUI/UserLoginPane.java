@@ -2,36 +2,24 @@ package com.example.madfitness.GUI;
 
 import com.example.madfitness.Database.DBConst;
 import com.example.madfitness.Database.DatabaseConnection;
-import com.example.madfitness.Form;
-import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class UserLogin extends Application {
-    /**
-     * @param primaryStage the primary stage for this application, onto which
-     *                     the application scene can be set.
-     *                     Applications may create other stages, if needed, but they will not be
-     *                     primary stages.
-     * @throws Exception
-     */
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("User Login");
+public class UserLoginPane extends Pane {
 
-        Label usernameLabel=new Label("Username:");
-        TextField usernameField=new TextField();
+    public UserLoginPane() {
+        Label usernameLabel = new Label("Username:");
+        TextField usernameField = new TextField();
 
         Label passwordLabel = new Label("Password:");
         PasswordField passwordField = new PasswordField();
@@ -45,10 +33,7 @@ public class UserLogin extends Application {
         buttonBox.getChildren().addAll(newUserButton, loginButton);
         vbox.getChildren().addAll(usernameLabel, usernameField, passwordLabel, passwordField, buttonBox);
 
-        Scene scene = new Scene(vbox, 300, 200);
-
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        getChildren().add(vbox);
 
         newUserButton.setOnAction(event -> {
             String username = usernameField.getText();
@@ -59,7 +44,6 @@ public class UserLogin extends Application {
                 if (!doesUserExist(username)) {
                     // if the username doesn't exist, insert the new user
                     addUser(username, password);
-
                     System.out.println("User created successfully!");
                 } else {
                     System.out.println("Username already exists. Please choose a different username.");
@@ -67,8 +51,6 @@ public class UserLogin extends Application {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
-
         });
 
         loginButton.setOnAction(event -> {
@@ -76,11 +58,9 @@ public class UserLogin extends Application {
             String password = passwordField.getText();
 
             //if login successful open form page
-
-            //TODO add code to retrieve user id and pass to form page
             try {
                 if (isLoginSuccessful(username, password)) {
-                    openForm(primaryStage);
+                    //TODO open form pane
                 } else {
                     System.out.println("Login failed");
                 }
@@ -88,9 +68,8 @@ public class UserLogin extends Application {
                 e.printStackTrace();
             }
         });
-
-
     }
+
     private boolean doesUserExist(String username) throws SQLException {
         // construct the SQL query to check if the username already exists
         String query = "SELECT COUNT(*) FROM " + DBConst.TABLE_USER + " WHERE " +
@@ -118,7 +97,7 @@ public class UserLogin extends Application {
         }
     }
 
-    //this method executes a query that checks if username and password exist in the table, if count > 0 login succesful
+    //this method executes a query that checks if username and password exist in the table, if count > 0 login successful
     private boolean isLoginSuccessful(String username, String password) throws SQLException {
         String query = "SELECT COUNT(*) FROM " + DBConst.TABLE_USER + " WHERE " +
                 DBConst.USER_COLUMN_USERNAME + " = '" + username + "' AND " +
@@ -133,16 +112,6 @@ public class UserLogin extends Application {
             }
         }
         return false;
-    }
-
-    private void openForm(Stage primaryStage){
-        try{
-            Form form=new Form();
-            //TODO create code to handle user id to form page
-            form.start(primaryStage);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
 

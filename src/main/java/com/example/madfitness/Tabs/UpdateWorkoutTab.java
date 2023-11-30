@@ -2,8 +2,8 @@ package com.example.madfitness.Tabs;
 
 import javafx.scene.control.Tab;
 
-public class UpdateItemTab extends Tab {
-    public UpdateItemTab() {
+public class UpdateWorkoutTab extends Tab {
+    public UpdateWorkoutTab() {
         this.setText("Update Item");
     }
 }
