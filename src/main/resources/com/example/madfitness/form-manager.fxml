@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1024.0" style="-fx-background-color: #18191A;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.madfitness.Controller.FormController">
+   <children>
+      <TabPane layoutY="94.0" prefHeight="610.0" prefWidth="1024.0" style="-fx-background-color: #3f3f3f; -fx-tab-max-height: 25; -fx-tab-min-width: 200;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="94.0">
+        <tabs>
+          <Tab fx:id="viewWorkoutTab" closable="false" style="-fx-background-color: #04a2d9; -fx-font-family: impact; -fx-font-size: 20;" text="View Workouts">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+            <Tab fx:id="addWorkoutTab" closable="false" style="-fx-background-color: #04a2d9; -fx-font-family: impact; -fx-font-size: 20;" text="Add/Delete Workouts">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+            <Tab fx:id="exerciseTab" closable="false" style="-fx-background-color: #04a2d9; -fx-font-family: impact; -fx-font-size: 20;" text="Exercises">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.5812133072407045" layoutX="36.0" layoutY="14.0" prefHeight="577.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="575.0" prefWidth="559.0" style="-fx-background-color: #3f3f3f;">
+                                 <children>
+                                    <TextField fx:id="exerciseNameField" layoutX="196.0" layoutY="68.0" prefHeight="32.0" prefWidth="234.0" />
+                                    <Label fx:id="exerciseNameLabel" layoutX="35.0" layoutY="74.0" text="Exercise Name" textFill="WHITE">
+                                       <font>
+                                          <Font name="ROGFonts-Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="exerciseDescriptionField" layoutX="196.0" layoutY="126.0" prefHeight="32.0" prefWidth="234.0" />
+                                    <Label fx:id="exerciseDescriptionLabel" layoutX="60.0" layoutY="132.0" text="Description" textFill="WHITE">
+                                       <font>
+                                          <Font name="ROGFonts-Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="workoutTypeCombo" layoutX="196.0" layoutY="189.0" prefHeight="31.0" prefWidth="234.0" />
+                                    <Label fx:id="workoutTypeLabel" layoutX="38.0" layoutY="195.0" text="Workout Type" textFill="WHITE">
+                                       <font>
+                                          <Font name="ROGFonts-Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="muscleGroupCombo" layoutX="196.0" layoutY="255.0" prefHeight="31.0" prefWidth="234.0" />
+                                    <Label fx:id="muscleGroupLabel" layoutX="41.0" layoutY="261.0" text="Muscle Group" textFill="WHITE">
+                                       <font>
+                                          <Font name="ROGFonts-Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="addExerciseButton" layoutX="139.0" layoutY="312.0" mnemonicParsing="false" onAction="#addExerciseCllicked" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #04a2d9;" text="Add Exercise" textFill="WHITE">
+                                       <font>
+                                          <Font name="ROGFonts-Regular" size="13.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <SplitPane dividerPositions="0.6352530541012217" layoutX="154.0" layoutY="188.0" orientation="VERTICAL" prefHeight="575.0" prefWidth="425.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                             <children>
+                                                <ListView fx:id="exerciseListView" layoutX="66.0" prefHeight="285.0" prefWidth="423.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #3f3f3f;">
+                                             <children>
+                                                <Label fx:id="displayDescriptionLabel" alignment="CENTER" layoutX="31.0" layoutY="25.0" prefHeight="158.0" prefWidth="369.0" text="Description for exercise will go here when clicked in list above" textFill="WHITE" wrapText="true">
+                                                   <font>
+                                                      <Font name="ROGFonts-Regular" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="progressTab" closable="false" style="-fx-background-color: #04a2d9; -fx-font-family: impact; -fx-font-size: 20;" text="Progress">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Label fx:id="logoLabelTop" layoutX="283.0" layoutY="-21.0" prefHeight="135.0" prefWidth="255.0" text="MAD" textFill="#04a2d9">
+         <font>
+            <Font name="ROGFonts-Regular" size="96.0" />
+         </font>
+      </Label>
+      <Label fx:id="logoLabelBottom" layoutX="538.0" layoutY="26.0" text="FITNESS" textFill="WHITE">
+         <font>
+            <Font name="ROGFonts-Regular" size="29.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

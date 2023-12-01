@@ -9,6 +9,12 @@ public class DBConst {
     public static final String USER_COLUMN_USERNAME="username";
     public static final String USER_COLUMN_PASSWORD="password";
 
+    // Exercise Type Table
+    public static final String TABLE_EXERCISE_TYPE = "exercise_type";
+    public static final String EXERCISE_TYPE_COLUMN_ID = "exercise_type_id";
+    public static final String EXERCISE_TYPE_COLUMN_NAME = "exercise_type_name";
+
+
     //Workout Table
     public static final String TABLE_WORKOUT="workout";
     public static final String WORKOUT_COLUMN_ID="workout_id";
@@ -64,11 +70,14 @@ public class DBConst {
             EXERCISE_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
             EXERCISE_COLUMN_NAME + " VARCHAR(50), " +
             EXERCISE_COLUMN_DESCRIPTION + " TEXT, " +
-            EXERCISE_COLUMN_TYPE + " VARCHAR(50), " +
+            EXERCISE_COLUMN_TYPE + " int, " +  // Modify to use the foreign key
             EXERCISE_COLUMN_MUSCLE_GROUP_ID + " int, " +
             "PRIMARY KEY (" + EXERCISE_COLUMN_ID + ")," +
+            "FOREIGN KEY (" + EXERCISE_COLUMN_TYPE + ") " +
+            "REFERENCES " + TABLE_EXERCISE_TYPE + "(" + EXERCISE_TYPE_COLUMN_ID + ")," +
             "FOREIGN KEY (" + EXERCISE_COLUMN_MUSCLE_GROUP_ID + ") " +
             "REFERENCES " + TABLE_MUSCLE_GROUP + "(" + MUSCLE_GROUP_COLUMN_ID + "));";
+
 
     public static final String CREATE_TABLE_MUSCLE_GROUP = "CREATE TABLE " + TABLE_MUSCLE_GROUP + " (" +
             MUSCLE_GROUP_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
@@ -90,6 +99,27 @@ public class DBConst {
             "('Triceps'), " +
             "('Biceps'), " +
             "('None');";
+
+    public static final String INSERT_EXERCISE_TYPES = "INSERT INTO " + TABLE_EXERCISE_TYPE +
+            " (" + EXERCISE_TYPE_COLUMN_NAME + ") VALUES " +
+            "('Cardio'), " +
+            "('Strength Training'), " +
+            "('Flexibility'), " +
+            "('Balance'), " +
+            "('HIIT'), " +
+            "('Yoga'), " +
+            "('Pilates'), " +
+            "('CrossFit'), " +
+            "('HyperTrophy'), " +
+            "('Endurance'), " +
+            "('Powerlifting');";
+
+
+    public static final String CREATE_TABLE_EXERCISE_TYPE = "CREATE TABLE " + TABLE_EXERCISE_TYPE + " (" +
+            EXERCISE_TYPE_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
+            EXERCISE_TYPE_COLUMN_NAME + " VARCHAR(50), " +
+            "PRIMARY KEY (" + EXERCISE_TYPE_COLUMN_ID + "));";
+
 
 
     public static final String CREATE_TABLE_WORKOUT_EXERCISE = "CREATE TABLE " + TABLE_WORKOUT_EXERCISE + " (" +

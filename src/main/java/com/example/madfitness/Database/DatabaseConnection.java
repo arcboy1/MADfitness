@@ -16,9 +16,12 @@ public class DatabaseConnection {
             createTable(DBConst.TABLE_USER, DBConst.CREATE_TABLE_USER, connection);
             createTable(DBConst.TABLE_WORKOUT, DBConst.CREATE_TABLE_WORKOUT, connection);
             createTable(DBConst.TABLE_MUSCLE_GROUP, DBConst.CREATE_TABLE_MUSCLE_GROUP, connection);
+            createTable(DBConst.TABLE_EXERCISE_TYPE, DBConst.CREATE_TABLE_EXERCISE_TYPE, connection);
             createTable(DBConst.TABLE_EXERCISE, DBConst.CREATE_TABLE_EXERCISE, connection);
             createTable(DBConst.TABLE_WORKOUT_EXERCISE, DBConst.CREATE_TABLE_WORKOUT_EXERCISE, connection);
             insertIntoTable(DBConst.TABLE_MUSCLE_GROUP,DBConst.INSERT_MUSCLE_GROUPS,connection);
+            insertIntoTable(DBConst.TABLE_EXERCISE_TYPE, DBConst.INSERT_EXERCISE_TYPES, connection);
+
         }catch (Exception e){
             e.printStackTrace();
         }

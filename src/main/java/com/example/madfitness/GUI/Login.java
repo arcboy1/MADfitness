@@ -4,6 +4,7 @@ import com.example.madfitness.Database.DatabaseConnection;
 import com.example.madfitness.scenes.FormScene;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -69,8 +70,16 @@ public class Login extends Application {
 
     private void openForm(Stage primaryStage) {
         try {
-            primaryStage.setScene(new FormScene());
-        } catch (Exception e) {
+            // Load the FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/madfitness/form-manager.fxml"));
+            Parent root = loader.load();
+
+            // Create a scene using the loaded FXML file
+            Scene formScene = new Scene(root);
+
+            // Set the scene for the primary stage
+            primaryStage.setScene(formScene);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
