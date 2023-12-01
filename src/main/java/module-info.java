@@ -8,4 +8,7 @@ module com.example.madfitness {
     exports com.example.madfitness;
     exports com.example.madfitness.GUI;
     opens com.example.madfitness.GUI to javafx.fxml;
+    exports com.example.madfitness.Controller;
+    opens com.example.madfitness.Controller to javafx.fxml;
+
 }
