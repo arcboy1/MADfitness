@@ -79,6 +79,7 @@ public class Login extends Application {
 
             // Set the scene for the primary stage
             primaryStage.setScene(formScene);
+            primaryStage.setTitle("MADFitness");
         } catch (IOException e) {
             e.printStackTrace();
         }

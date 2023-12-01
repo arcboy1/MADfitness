@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1024.0" style="-fx-background-color: #18191A;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.madfitness.Controller.FormController">
    <children>
-      <TabPane layoutY="94.0" prefHeight="610.0" prefWidth="1024.0" style="-fx-background-color: #3f3f3f; -fx-tab-max-height: 25; -fx-tab-min-width: 200;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="94.0">
+      <TabPane layoutY="101.0" prefHeight="603.0" prefWidth="1024.0" style="-fx-background-color: #3f3f3f; -fx-tab-max-height: 25; -fx-tab-min-width: 200;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="101.0">
         <tabs>
           <Tab fx:id="viewWorkoutTab" closable="false" style="-fx-background-color: #04a2d9; -fx-font-family: impact; -fx-font-size: 20;" text="View Workouts">
             <content>
@@ -99,7 +99,7 @@
             </Tab>
         </tabs>
       </TabPane>
-      <Label fx:id="logoLabelTop" layoutX="283.0" layoutY="-21.0" prefHeight="135.0" prefWidth="255.0" text="MAD" textFill="#04a2d9">
+      <Label fx:id="logoLabelTop" layoutX="282.0" layoutY="-23.0" prefHeight="124.0" prefWidth="255.0" text="MAD" textFill="#04a2d9">
          <font>
             <Font name="ROGFonts-Regular" size="96.0" />
          </font>
