@@ -75,6 +75,23 @@ public class DBConst {
             MUSCLE_GROUP_COLUMN_NAME + " VARCHAR(50), " +
             "PRIMARY KEY (" + MUSCLE_GROUP_COLUMN_ID + "));";
 
+    public static final String INSERT_MUSCLE_GROUPS = "INSERT INTO " + TABLE_MUSCLE_GROUP +
+            " (" + MUSCLE_GROUP_COLUMN_NAME + ") VALUES " +
+            "('Chest'), " +
+            "('Back'), " +
+            "('Legs'), " +
+            "('Arms'), " +
+            "('Shoulders'), " +
+            "('Abdominals'), " +
+            "('Glutes'), " +
+            "('Quadriceps'), " +
+            "('Hamstrings'), " +
+            "('Calves'), " +
+            "('Triceps'), " +
+            "('Biceps'), " +
+            "('None');";
+
+
     public static final String CREATE_TABLE_WORKOUT_EXERCISE = "CREATE TABLE " + TABLE_WORKOUT_EXERCISE + " (" +
             WORKOUT_EXERCISE_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
             WORKOUT_EXERCISE_COLUMN_WORKOUT_ID + " int NOT NULL, " +
