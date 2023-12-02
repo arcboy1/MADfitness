@@ -131,29 +131,6 @@ public class FormController {
     private void initialize() {
         topLogoAnimation();
         bottomLogoAnimation();
-        populateExerciseComboBox();
-    }
-    private void populateExerciseComboBox() {
-        try {
-            // Assuming you have a DatabaseConnection instance
-            DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
-
-            // Execute a query to retrieve exercise names
-            String query = "SELECT exercise_name FROM " + DBConst.TABLE_EXERCISE;
-            Statement statement = databaseConnection.getConnection().createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-
-            // Populate the ComboBox with the retrieved exercise names
-            List<String> exerciseNames = new ArrayList<>();
-            while (resultSet.next()) {
-                String exerciseName = resultSet.getString("exercise_name");
-                exerciseNames.add(exerciseName);
-            }
-
-            addExerciseCombo.getItems().addAll(exerciseNames);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
     private void topLogoAnimation() {
 
