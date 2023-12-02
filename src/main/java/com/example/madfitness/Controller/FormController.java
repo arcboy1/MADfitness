@@ -106,7 +106,7 @@ public class FormController {
     private Label weightLabel;
 
     @FXML
-    private ComboBox<?> workoutTypeCombo;
+    private ComboBox<String> workoutTypeCombo;
 
     @FXML
     private Label workoutTypeLabel;

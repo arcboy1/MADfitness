@@ -23,6 +23,9 @@ public class DatabaseConnection {
             createTable(DBConst.TABLE_WORKOUT_EXERCISE, DBConst.CREATE_TABLE_WORKOUT_EXERCISE, connection);
             insertIntoTable(DBConst.TABLE_MUSCLE_GROUP, DBConst.INSERT_MUSCLE_GROUPS, connection);
             insertIntoTable(DBConst.TABLE_EXERCISE_TYPE, DBConst.INSERT_EXERCISE_TYPES, connection);
+            insertIntoTable(DBConst.TABLE_EXERCISE, DBConst.INSERT_COMMON_EXERCISES, connection);
+
+
 
             // Add other initialization logic if needed
         } catch (Exception e) {

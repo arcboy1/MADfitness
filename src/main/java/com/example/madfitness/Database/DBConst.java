@@ -60,6 +60,35 @@ public class DBConst {
             "FOREIGN KEY (" + EXERCISE_COLUMN_MUSCLE_GROUP_ID + ") " +
             "REFERENCES " + TABLE_MUSCLE_GROUP + "(" + MUSCLE_GROUP_COLUMN_ID + "));";
 
+    public static final String INSERT_COMMON_EXERCISES = "INSERT INTO " + TABLE_EXERCISE +
+            " (" + EXERCISE_COLUMN_NAME + ", " + EXERCISE_COLUMN_DESCRIPTION + ", " +
+            EXERCISE_COLUMN_TYPE + ", " + EXERCISE_COLUMN_MUSCLE_GROUP_ID + ") VALUES " +
+            "('Push up', 'Bodyweight exercise targeting chest, shoulders, and triceps.', 2, 1), " +
+            "('Pull up', 'Upper body strength exercise focusing on back and biceps.', 2, 2), " +
+            "('Squats', 'Compound movement working on lower body muscles.', 2, 3), " +
+            "('Bicep Curl', 'Isolation exercise for the biceps.', 2, 5), " +
+            "('Plank', 'Core stability exercise targeting abdominals and back.', 4, 6), " +
+            "('Lunges', 'Leg exercise targeting quadriceps and hamstrings.', 2, 3), " +
+            "('Deadlift', 'Full-body compound movement emphasizing back and legs.', 2, 2), " +
+            "('Crunches', 'Abdominal exercise for targeting the rectus abdominis.', 4, 6), " +
+            "('Shoulder Press', 'Strengthens shoulder muscles, especially deltoids.', 2, 5), " +
+            "('Tricep Dip', 'Isolation exercise for the triceps.', 2, 5), " +
+            "('Leg Press', 'Machine exercise for building leg strength.', 2, 3), " +
+            "('Calf Raises', 'Targeting the muscles in the calf area.', 2, 10), " +
+            "('Russian Twist', 'Core exercise involving twisting motion for obliques.', 4, 6), " +
+            "('Lat Pulldown', 'Targets the latissimus dorsi muscles in the back.', 2, 2), " +
+            "('Hammer Curl', 'Variation of bicep curl targeting brachialis and brachioradialis.', 2, 5), " +
+            "('Front Squat', 'Similar to squats but emphasizes the front of the leg.', 2, 3), " +
+            "('Hanging Leg Raise', 'Advanced abdominal exercise hanging from a bar.', 4, 6), " +
+            "('Arnold Press', 'Shoulder exercise involving a twisting motion during the press.', 2, 5), " +
+            "('Dumbbell Flyes', 'Isolation exercise for chest muscles using dumbbells.', 2, 1), " +
+            "('Box Jumps', 'Explosive leg exercise involving jumping onto a raised platform.', 5, 3), " +
+            "('Running', 'Cardiovascular exercise for overall endurance.', 1, 11), " +
+            "('Jump Rope', 'Great for cardio and coordination.', 1, 11), " +
+            "('Mountain Climbers', 'Full-body exercise with a focus on cardio and core strength.', 5, 6);";
+
+
+
 
     public static final String CREATE_TABLE_MUSCLE_GROUP = "CREATE TABLE " + TABLE_MUSCLE_GROUP + " (" +
             MUSCLE_GROUP_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
