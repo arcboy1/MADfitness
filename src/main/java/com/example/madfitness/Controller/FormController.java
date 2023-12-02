@@ -5,6 +5,8 @@ import com.example.madfitness.Database.DatabaseConnection;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.Glow;
 import javafx.util.Duration;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -49,7 +52,7 @@ public class FormController {
     private Label exerciseDescriptionLabel;
 
     @FXML
-    private ListView<?> exerciseListView;
+    private ListView<String> exerciseListView;
 
     @FXML
     private TextField exerciseNameField;
@@ -131,6 +134,29 @@ public class FormController {
     private void initialize() {
         topLogoAnimation();
         bottomLogoAnimation();
+        populateExerciseListView();
+    }
+    private void populateExerciseListView() {
+        try {
+            DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
+
+            // Assuming you have a method in your DatabaseConnection class to retrieve exercise names
+            List<String> exerciseNames = new ArrayList<>();
+
+            try (Statement statement = databaseConnection.getConnection().createStatement()) {
+                ResultSet resultSet = statement.executeQuery("SELECT " + DBConst.EXERCISE_COLUMN_NAME + " FROM " + DBConst.TABLE_EXERCISE);
+
+                while (resultSet.next()) {
+                    exerciseNames.add(resultSet.getString(DBConst.EXERCISE_COLUMN_NAME));
+                }
+            }
+
+            // Populate the exerciseListView with exercise names
+            exerciseListView.getItems().addAll(exerciseNames);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception as needed
+        }
     }
     private void topLogoAnimation() {
 
