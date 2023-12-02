@@ -71,11 +71,11 @@
                                  <children>
                                     <TableView layoutX="183.0" layoutY="66.0" prefHeight="568.0" prefWidth="502.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="Exercise" />
-                                        <TableColumn prefWidth="75.0" text="Sets" />
-                                          <TableColumn prefWidth="75.0" text="Reps" />
-                                          <TableColumn prefWidth="75.0" text="Weight" />
-                                          <TableColumn prefWidth="75.0" text="Time" />
+                                        <TableColumn prefWidth="160.0" text="Exercise" />
+                                        <TableColumn prefWidth="62.0" text="Sets" />
+                                          <TableColumn prefWidth="48.0" text="Reps" />
+                                          <TableColumn prefWidth="96.0" text="Weight" />
+                                          <TableColumn prefWidth="109.0" text="Time" />
                                       </columns>
                                     </TableView>
                                  </children>
