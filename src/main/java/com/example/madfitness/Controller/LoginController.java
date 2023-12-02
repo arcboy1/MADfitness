@@ -135,22 +135,19 @@ public class LoginController {
         String jdbcDriver = "com.mysql.cj.jdbc.Driver";
         String connectionURL = "jdbc:mysql://" + location + "/" + databaseName + "?serverTimezone=UTC";
 
-        try {
-            // Attempt login
-            if (DatabaseConnection.testConnection(jdbcDriver, connectionURL, username, password)) {
-                DatabaseConnection databaseConnection = new DatabaseConnection(jdbcDriver, connectionURL, username, password)
-                        .setDatabaseName(databaseName);
+        // Attempt to set login information and establish the connection
+        DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
+        databaseConnection.setLoginInfo(jdbcDriver, connectionURL, username, password, databaseName);
 
-                openForm((Stage) loginButton.getScene().getWindow());
-                loginResultLabel.setText("Login Successful");
+        // Check if the connection is successful
+        if (databaseConnection.getConnection() != null) {
+            openForm((Stage) loginButton.getScene().getWindow());
+            loginResultLabel.setText("Login Successful");
 
-                // Save login information to the file after successful login
-                saveLoginInfo(username, password, databaseName, location);
-            } else {
-                loginResultLabel.setText("Connection Failed");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            // Save login information to the file after successful login
+            saveLoginInfo(username, password, databaseName, location);
+        } else {
+            loginResultLabel.setText("Connection Failed");
         }
     }
 

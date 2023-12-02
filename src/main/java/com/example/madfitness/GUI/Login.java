@@ -37,12 +37,13 @@ public class Login extends Application {
                     String connectionURL = "jdbc:mysql://" + location + "/" + databaseName + "?serverTimezone=UTC";
 
                     // Attempt to log in automatically
-                    if (DatabaseConnection.testConnection(jdbcDriver, connectionURL, username, password)) {
-                        DatabaseConnection databaseConnection = new DatabaseConnection(jdbcDriver, connectionURL, username, password)
-                                .setDatabaseName(databaseName);
+                    DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
+                    databaseConnection.setLoginInfo(jdbcDriver, connectionURL, username, password, databaseName);
+
+                    if (databaseConnection.getConnection() != null) {
                         openForm(primaryStage);
                     }
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

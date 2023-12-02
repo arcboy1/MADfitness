@@ -6,10 +6,13 @@ public class DatabaseConnection {
     private Connection connection=null;
     private String databaseName;
 
-    public DatabaseConnection(String jdbcDriver,String connectionURL,String username,String password){
-        try{
+    private DatabaseConnection() {
+    }
+    public void setLoginInfo(String jdbcDriver, String connectionURL, String username, String password, String databaseName) {
+        try {
             Class.forName(jdbcDriver);
             connection = DriverManager.getConnection(connectionURL, username, password);
+            this.databaseName = databaseName;
 
             System.out.println("Connection Successful");
 
@@ -18,10 +21,11 @@ public class DatabaseConnection {
             createTable(DBConst.TABLE_EXERCISE_TYPE, DBConst.CREATE_TABLE_EXERCISE_TYPE, connection);
             createTable(DBConst.TABLE_EXERCISE, DBConst.CREATE_TABLE_EXERCISE, connection);
             createTable(DBConst.TABLE_WORKOUT_EXERCISE, DBConst.CREATE_TABLE_WORKOUT_EXERCISE, connection);
-            insertIntoTable(DBConst.TABLE_MUSCLE_GROUP,DBConst.INSERT_MUSCLE_GROUPS,connection);
+            insertIntoTable(DBConst.TABLE_MUSCLE_GROUP, DBConst.INSERT_MUSCLE_GROUPS, connection);
             insertIntoTable(DBConst.TABLE_EXERCISE_TYPE, DBConst.INSERT_EXERCISE_TYPES, connection);
 
-        }catch (Exception e){
+            // Add other initialization logic if needed
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -31,7 +35,7 @@ public class DatabaseConnection {
         return this;
     }
 
-    private DatabaseConnection() {}
+
 
     //constructor without createTable methods to test connection
     private DatabaseConnection(String jdbcDriver, String connectionURL, String username, String password, boolean test) {
@@ -101,12 +105,4 @@ public class DatabaseConnection {
 
 
 
-    public static boolean testConnection(String jdbcDriver, String connectionURL, String username, String password) throws SQLException {
-        try (Connection connection = DriverManager.getConnection(connectionURL, username, password)) {
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 }

@@ -1,5 +1,7 @@
 package com.example.madfitness.Controller;
 
+import com.example.madfitness.Database.DBConst;
+import com.example.madfitness.Database.DatabaseConnection;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -14,13 +16,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.Glow;
 import javafx.util.Duration;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 public class FormController {
 
     @FXML
     private Button addExerciseButton;
 
     @FXML
-    private ComboBox<?> addExerciseCombo;
+    private ComboBox<String> addExerciseCombo;
 
     @FXML
     private Label addExerciseLabel;
@@ -123,6 +131,29 @@ public class FormController {
     private void initialize() {
         topLogoAnimation();
         bottomLogoAnimation();
+        populateExerciseComboBox();
+    }
+    private void populateExerciseComboBox() {
+        try {
+            // Assuming you have a DatabaseConnection instance
+            DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
+
+            // Execute a query to retrieve exercise names
+            String query = "SELECT exercise_name FROM " + DBConst.TABLE_EXERCISE;
+            Statement statement = databaseConnection.getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            // Populate the ComboBox with the retrieved exercise names
+            List<String> exerciseNames = new ArrayList<>();
+            while (resultSet.next()) {
+                String exerciseName = resultSet.getString("exercise_name");
+                exerciseNames.add(exerciseName);
+            }
+
+            addExerciseCombo.getItems().addAll(exerciseNames);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     private void topLogoAnimation() {
 
