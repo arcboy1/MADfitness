@@ -7,6 +7,8 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -15,12 +17,75 @@
    <children>
       <TabPane layoutY="101.0" prefHeight="603.0" prefWidth="1024.0" style="-fx-background-color: #3f3f3f; -fx-tab-max-height: 25; -fx-tab-min-width: 200;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="101.0">
         <tabs>
-          <Tab fx:id="viewWorkoutTab" closable="false" style="-fx-background-color: #04a2d9; -fx-font-family: impact; -fx-font-size: 20;" text="View Workouts">
+          <Tab fx:id="viewWorkoutTab" closable="false" style="-fx-background-color: #04a2d9; -fx-font-family: impact; -fx-font-size: 20;" text="New Workout">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.5058708414872799" layoutX="485.0" layoutY="136.0" prefHeight="570.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #3f3f3f;">
+                                 <children>
+                                    <Label fx:id="addExerciseLabel" layoutX="38.0" layoutY="88.0" text="Exercise Name" textFill="WHITE">
+                                       <font>
+                                          <Font name="ROGFonts-Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="addExerciseCombo" layoutX="204.0" layoutY="81.0" prefHeight="33.0" prefWidth="232.0" />
+                                    <TextField fx:id="setsField" layoutX="110.0" layoutY="159.0" prefHeight="32.0" prefWidth="42.0" />
+                                    <TextField fx:id="repsField" layoutX="268.0" layoutY="159.0" prefHeight="32.0" prefWidth="42.0" />
+                                    <TextField fx:id="weightField" layoutX="422.0" layoutY="159.0" prefHeight="32.0" prefWidth="64.0" />
+                                    <Label fx:id="setsLabel" layoutX="38.0" layoutY="165.0" text="sets" textFill="WHITE">
+                                       <font>
+                                          <Font name="ROGFonts-Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="repsLabel" layoutX="197.0" layoutY="164.0" text="Reps" textFill="WHITE">
+                                       <font>
+                                          <Font name="ROGFonts-Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="weightLabel" layoutX="336.0" layoutY="164.0" text="Weight" textFill="WHITE">
+                                       <font>
+                                          <Font name="ROGFonts-Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="addToWorkoutButton" layoutX="159.0" layoutY="257.0" mnemonicParsing="false" onAction="#addToWorkoutClicked" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #04a2d9;" text="Add to workout" textFill="WHITE">
+                                       <font>
+                                          <Font name="ROGFonts-Regular" size="13.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="finishWorkoutButton" layoutX="157.0" layoutY="477.0" mnemonicParsing="false" onAction="#finishWorkoutCllicked" prefHeight="41.0" prefWidth="198.0" style="-fx-background-color: #04a2d9;" text="Finish workout" textFill="WHITE">
+                                       <font>
+                                          <Font name="ROGFonts-Regular" size="13.0" />
+                                       </font>
+                                    </Button>
+                                    <Label fx:id="setsLabel1" layoutX="118.0" layoutY="212.0" text="Time  (minutes)" textFill="WHITE">
+                                       <font>
+                                          <Font name="ROGFonts-Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="setsField1" layoutX="284.0" layoutY="206.0" prefHeight="32.0" prefWidth="52.0" />
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <TableView layoutX="183.0" layoutY="66.0" prefHeight="568.0" prefWidth="502.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="Exercise" />
+                                        <TableColumn prefWidth="75.0" text="Sets" />
+                                          <TableColumn prefWidth="75.0" text="Reps" />
+                                          <TableColumn prefWidth="75.0" text="Weight" />
+                                          <TableColumn prefWidth="75.0" text="Time" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children></AnchorPane>
             </content>
           </Tab>
-            <Tab fx:id="addWorkoutTab" closable="false" style="-fx-background-color: #04a2d9; -fx-font-family: impact; -fx-font-size: 20;" text="Add/Delete Workouts">
+            <Tab fx:id="addWorkoutTab" closable="false" style="-fx-background-color: #04a2d9; -fx-font-family: impact; -fx-font-size: 20;" text="Manage Workouts">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>
@@ -57,7 +122,7 @@
                                           <Font name="ROGFonts-Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="addExerciseButton" layoutX="148.0" layoutY="362.0" mnemonicParsing="false" onAction="#addExerciseCllicked" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #04a2d9;" text="Add Exercise" textFill="WHITE">
+                                    <Button fx:id="addExerciseButton" layoutX="148.0" layoutY="362.0" mnemonicParsing="false" onAction="#addExerciseClicked" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #04a2d9;" text="Add Exercise" textFill="WHITE">
                                        <font>
                                           <Font name="ROGFonts-Regular" size="13.0" />
                                        </font>

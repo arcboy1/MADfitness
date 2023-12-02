@@ -20,6 +20,15 @@ public class FormController {
     private Button addExerciseButton;
 
     @FXML
+    private ComboBox<?> addExerciseCombo;
+
+    @FXML
+    private Label addExerciseLabel;
+
+    @FXML
+    private Button addToWorkoutButton;
+
+    @FXML
     private Tab addWorkoutTab;
 
     @FXML
@@ -44,6 +53,9 @@ public class FormController {
     private Tab exerciseTab;
 
     @FXML
+    private Button finishWorkoutButton;
+
+    @FXML
     private Label logoLabelBottom;
 
     @FXML
@@ -59,7 +71,31 @@ public class FormController {
     private Tab progressTab;
 
     @FXML
+    private TextField repsField;
+
+    @FXML
+    private Label repsLabel;
+
+    @FXML
+    private TextField setsField;
+
+    @FXML
+    private TextField setsField1;
+
+    @FXML
+    private Label setsLabel;
+
+    @FXML
+    private Label setsLabel1;
+
+    @FXML
     private Tab viewWorkoutTab;
+
+    @FXML
+    private TextField weightField;
+
+    @FXML
+    private Label weightLabel;
 
     @FXML
     private ComboBox<?> workoutTypeCombo;
@@ -68,7 +104,17 @@ public class FormController {
     private Label workoutTypeLabel;
 
     @FXML
-    void addExerciseCllicked(ActionEvent event) {
+    void addExerciseClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void addToWorkoutClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void finishWorkoutCllicked(ActionEvent event) {
 
     }
 

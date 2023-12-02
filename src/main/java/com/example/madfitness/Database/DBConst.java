@@ -15,10 +15,6 @@ public class DBConst {
     public static final String WORKOUT_COLUMN_ID="workout_id";
     public static final String WORKOUT_COLUMN_DATE="date";
 
-    public static final String WORKOUT_COLUMN_START_TIME = "start_time";
-    public static final String WORKOUT_COLUMN_END_TIME = "end_time";
-
-    public static final String WORKOUT_COLUMN_DURATION="duration";
 
     //Exercise Table
     public static final String TABLE_EXERCISE="exercise";
@@ -41,6 +37,8 @@ public class DBConst {
     public static final String WORKOUT_EXERCISE_COLUMN_SETS="sets";
     public static final String WORKOUT_EXERCISE_COLUMN_REPS="reps";
     public static final String WORKOUT_EXERCISE_COLUMN_WEIGHT="weight";
+    public static final String WORKOUT_EXERCISE_COLUMN_DURATION="duration"; // Added duration column
+
 
     //below are the queries to create the tables in the database
 
@@ -48,15 +46,13 @@ public class DBConst {
     public static final String CREATE_TABLE_WORKOUT = "CREATE TABLE " + TABLE_WORKOUT + " (" +
             WORKOUT_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
             WORKOUT_COLUMN_DATE + " DATE, " +
-            WORKOUT_COLUMN_START_TIME + " DATETIME, " +
-            WORKOUT_COLUMN_END_TIME + " DATETIME, " +
             "PRIMARY KEY (" + WORKOUT_COLUMN_ID + "));";
 
     public static final String CREATE_TABLE_EXERCISE = "CREATE TABLE " + TABLE_EXERCISE + " (" +
             EXERCISE_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
             EXERCISE_COLUMN_NAME + " VARCHAR(50), " +
-            EXERCISE_COLUMN_DESCRIPTION + " TEXT, " +
-            EXERCISE_COLUMN_TYPE + " int, " +  // Modify to use the foreign key
+            EXERCISE_COLUMN_DESCRIPTION + " VARCHAR(200), " +
+            EXERCISE_COLUMN_TYPE + " int, " +
             EXERCISE_COLUMN_MUSCLE_GROUP_ID + " int, " +
             "PRIMARY KEY (" + EXERCISE_COLUMN_ID + ")," +
             "FOREIGN KEY (" + EXERCISE_COLUMN_TYPE + ") " +
@@ -115,6 +111,7 @@ public class DBConst {
             WORKOUT_EXERCISE_COLUMN_SETS + " int, " +
             WORKOUT_EXERCISE_COLUMN_REPS + " int, " +
             WORKOUT_EXERCISE_COLUMN_WEIGHT + " int, " +
+            WORKOUT_EXERCISE_COLUMN_DURATION + " int, " +
             "PRIMARY KEY (" + WORKOUT_EXERCISE_COLUMN_ID + ")," +
             "FOREIGN KEY (" + WORKOUT_EXERCISE_COLUMN_WORKOUT_ID + ") " +
             "REFERENCES " + TABLE_WORKOUT + "(" + WORKOUT_COLUMN_ID + ")," +
