@@ -41,7 +41,7 @@ public class DatabaseConnection {
 
 
     //constructor without createTable methods to test connection
-    private DatabaseConnection(String jdbcDriver, String connectionURL, String username, String password, boolean test) {
+    private DatabaseConnection(String jdbcDriver, String connectionURL, String username, String password) {
         try {
             Class.forName(jdbcDriver);
             connection = DriverManager.getConnection(connectionURL, username, password);
