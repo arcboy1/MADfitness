@@ -9,35 +9,35 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1024.0" style="-fx-background-color: #18191A;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.madfitness.Controller.LoginController">
    <children>
-      <Label fx:id="usernameLabel" alignment="CENTER" layoutX="470.0" layoutY="234.0" prefHeight="13.0" prefWidth="86.0" text="Username" textFill="WHITE">
+      <Label fx:id="usernameLabel" alignment="CENTER" layoutX="470.0" layoutY="234.0" prefHeight="13.0" prefWidth="86.0" text="Username" textFill="WHITE" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="450.0">
          <font>
             <Font name="ROGFonts-Regular" size="12.0" />
          </font>
       </Label>
       <TextField fx:id="usernameField" alignment="CENTER" layoutX="406.0" layoutY="255.0" prefHeight="25.0" prefWidth="212.0" />
-      <Label fx:id="passwordLabel" alignment="CENTER" layoutX="470.0" layoutY="290.0" prefHeight="13.0" prefWidth="86.0" text="PASSWORD" textFill="WHITE">
+      <Label fx:id="passwordLabel" alignment="CENTER" layoutX="470.0" layoutY="290.0" prefHeight="13.0" prefWidth="86.0" text="PASSWORD" textFill="WHITE" AnchorPane.leftAnchor="470.0" AnchorPane.rightAnchor="468.0">
          <font>
             <Font name="ROGFonts-Regular" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="databaseLabel" alignment="CENTER" layoutX="425.0" layoutY="345.0" prefHeight="17.0" prefWidth="174.0" text="DATABASE NAME" textFill="WHITE">
+      <Label fx:id="databaseLabel" alignment="CENTER" layoutX="425.0" layoutY="345.0" prefHeight="17.0" prefWidth="174.0" text="DATABASE NAME" textFill="WHITE" AnchorPane.leftAnchor="440.0" AnchorPane.rightAnchor="440.0">
          <font>
             <Font name="ROGFonts-Regular" size="12.0" />
          </font>
       </Label>
       <TextField fx:id="databaseField" alignment="CENTER" layoutX="406.0" layoutY="367.0" prefHeight="25.0" prefWidth="212.0" />
-      <Label fx:id="locationLabel" alignment="CENTER" layoutX="426.0" layoutY="402.0" prefHeight="17.0" prefWidth="174.0" text="DATABASE HOST" textFill="WHITE">
+      <Label fx:id="locationLabel" alignment="CENTER" layoutX="426.0" layoutY="402.0" prefHeight="17.0" prefWidth="174.0" text="DATABASE HOST" textFill="WHITE" AnchorPane.leftAnchor="440.0" AnchorPane.rightAnchor="440.0">
          <font>
             <Font name="ROGFonts-Regular" size="12.0" />
          </font>
       </Label>
       <TextField fx:id="locationField" alignment="CENTER" layoutX="406.0" layoutY="423.0" prefHeight="25.0" prefWidth="212.0" />
-      <Label fx:id="logoLabelTop" layoutX="386.0" layoutY="37.0" prefHeight="135.0" prefWidth="255.0" text="MAD" textFill="#04a2d9">
+      <Label fx:id="logoLabelTop" layoutX="386.0" layoutY="37.0" prefHeight="135.0" prefWidth="255.0" text="MAD" textFill="#04a2d9" AnchorPane.leftAnchor="385.0" AnchorPane.rightAnchor="385.0" AnchorPane.topAnchor="37.0">
          <font>
             <Font name="ROGFonts-Regular" size="96.0" />
          </font>
       </Label>
-      <Label fx:id="logoLabelBottom" layoutX="432.0" layoutY="137.0" text="FITNESS" textFill="WHITE">
+      <Label fx:id="logoLabelBottom" layoutX="432.0" layoutY="137.0" text="FITNESS" textFill="WHITE" AnchorPane.leftAnchor="430.0" AnchorPane.rightAnchor="430.0" AnchorPane.topAnchor="140.0">
          <font>
             <Font name="ROGFonts-Regular" size="29.0" />
          </font>

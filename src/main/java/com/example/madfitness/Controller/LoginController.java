@@ -1,7 +1,6 @@
 package com.example.madfitness.Controller;
 
 import com.example.madfitness.Database.DatabaseConnection;
-import com.example.madfitness.scenes.FormScene;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

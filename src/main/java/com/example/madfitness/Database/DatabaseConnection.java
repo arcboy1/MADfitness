@@ -13,7 +13,6 @@ public class DatabaseConnection {
 
             System.out.println("Connection Successful");
 
-            createTable(DBConst.TABLE_USER, DBConst.CREATE_TABLE_USER, connection);
             createTable(DBConst.TABLE_WORKOUT, DBConst.CREATE_TABLE_WORKOUT, connection);
             createTable(DBConst.TABLE_MUSCLE_GROUP, DBConst.CREATE_TABLE_MUSCLE_GROUP, connection);
             createTable(DBConst.TABLE_EXERCISE_TYPE, DBConst.CREATE_TABLE_EXERCISE_TYPE, connection);

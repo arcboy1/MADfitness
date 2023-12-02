@@ -1,10 +1,10 @@
 package com.example.madfitness;
 
+
 import com.example.madfitness.Tabs.ExerciseTab;
 import com.example.madfitness.Tabs.StatisticsTab;
 import com.example.madfitness.Tabs.UpdateWorkoutTab;
 import com.example.madfitness.Tabs.ViewWorkoutTab;
-import com.example.madfitness.form.Settings;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 

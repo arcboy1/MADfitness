@@ -3,11 +3,6 @@ package com.example.madfitness.Database;
 public class DBConst {
     //database constants stored in this class
 
-    //User Table
-    public static final String TABLE_USER="user";
-    public static final String USER_COLUMN_ID="user_id";
-    public static final String USER_COLUMN_USERNAME="username";
-    public static final String USER_COLUMN_PASSWORD="password";
 
     // Exercise Type Table
     public static final String TABLE_EXERCISE_TYPE = "exercise_type";
@@ -18,7 +13,6 @@ public class DBConst {
     //Workout Table
     public static final String TABLE_WORKOUT="workout";
     public static final String WORKOUT_COLUMN_ID="workout_id";
-    public static final String WORKOUT_COLUMN_USER_ID="user_id";
     public static final String WORKOUT_COLUMN_DATE="date";
 
     public static final String WORKOUT_COLUMN_START_TIME = "start_time";
@@ -50,21 +44,13 @@ public class DBConst {
 
     //below are the queries to create the tables in the database
 
-    public static final String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_USER + " (" +
-            USER_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
-            USER_COLUMN_USERNAME + " VARCHAR(50), " +
-            USER_COLUMN_PASSWORD + " VARCHAR(50), " +
-            "PRIMARY KEY (" + USER_COLUMN_ID + "));";
 
     public static final String CREATE_TABLE_WORKOUT = "CREATE TABLE " + TABLE_WORKOUT + " (" +
             WORKOUT_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
-            WORKOUT_COLUMN_USER_ID + " int NOT NULL, " +
             WORKOUT_COLUMN_DATE + " DATE, " +
             WORKOUT_COLUMN_START_TIME + " DATETIME, " +
             WORKOUT_COLUMN_END_TIME + " DATETIME, " +
-            "PRIMARY KEY (" + WORKOUT_COLUMN_ID + ")," +
-            "FOREIGN KEY (" + WORKOUT_COLUMN_USER_ID + ") " +
-            "REFERENCES " + TABLE_USER + "(" + USER_COLUMN_ID + "));";
+            "PRIMARY KEY (" + WORKOUT_COLUMN_ID + "));";
 
     public static final String CREATE_TABLE_EXERCISE = "CREATE TABLE " + TABLE_EXERCISE + " (" +
             EXERCISE_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
