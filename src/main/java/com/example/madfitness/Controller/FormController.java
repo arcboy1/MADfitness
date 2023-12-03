@@ -2,10 +2,13 @@ package com.example.madfitness.Controller;
 
 import com.example.madfitness.Database.DBConst;
 import com.example.madfitness.Database.DatabaseConnection;
-import com.example.madfitness.POJO.DisplayExercise;
 import com.example.madfitness.POJO.Exercise;
 import com.example.madfitness.POJO.ExerciseRecord;
+import com.example.madfitness.POJO.ExerciseType;
+import com.example.madfitness.POJO.MuscleGroup;
 import com.example.madfitness.Tables.ExerciseTable;
+import com.example.madfitness.Tables.ExerciseTypeTable;
+import com.example.madfitness.Tables.MuscleGroupTable;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -18,7 +21,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.Glow;
 import javafx.util.Duration;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -26,6 +28,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FormController {
+
+    //Creating all the tables
+    ExerciseTable exerciseTable = ExerciseTable.getInstance();
+    ExerciseTypeTable exerciseTypeTable = ExerciseTypeTable.getInstance();
+    MuscleGroupTable muscleGroupTable = MuscleGroupTable.getInstance();
+
 
     @FXML
     private Button addExerciseButton;
@@ -73,7 +81,7 @@ public class FormController {
     private Label logoLabelTop;
 
     @FXML
-    private ComboBox<?> muscleGroupCombo;
+    private ComboBox<MuscleGroup> muscleGroupCombo;
 
     @FXML
     private Label muscleGroupLabel;
@@ -118,9 +126,11 @@ public class FormController {
     @FXML
     private Label weightLabel;
 
+    //ExerciseType
     @FXML
-    private ComboBox<String> workoutTypeCombo;
+    private ComboBox<ExerciseType> workoutTypeCombo;
 
+    //ExerciseType
     @FXML
     private Label workoutTypeLabel;
 
@@ -147,6 +157,7 @@ public class FormController {
 
 //STOP HERE FOR NEW WORKOUT PAGE TABLEVIEW
 
+
     @FXML
     private void initialize() {
         topLogoAnimation();
@@ -158,9 +169,20 @@ public class FormController {
         repsColumn.setCellValueFactory(new PropertyValueFactory<>("reps"));
         weightColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+        populateExerciseComboBox();
+        refreshTable();
     }
     @FXML
     void addExerciseClicked(ActionEvent event) {
+        Exercise exercise = new Exercise(
+                exerciseNameField.getText(),
+                exerciseDescriptionField.getText(),
+                workoutTypeCombo.getSelectionModel().getSelectedItem().getId(),
+                muscleGroupCombo.getSelectionModel().getSelectedItem().getId()
+        );
+        exerciseTable.createExercise(exercise);
+        System.out.println("AddExercise Clicked");
+        refreshTable();
 
     }
 
@@ -231,6 +253,10 @@ public class FormController {
             // Handle the exception as needed
         }
     }
+    public void refreshTable(){
+        exerciseListView.getItems().clear();
+        populateExerciseListView();
+    }
 
     //ADD EXERCISE NAMES TO EXERCISE COMBO BOX
     private void populateExerciseComboBox() {
@@ -258,6 +284,13 @@ public class FormController {
         }
     }
 
+    public void populateExercisePageCombo(){
+        workoutTypeCombo.setItems(FXCollections.observableArrayList(exerciseTypeTable.getAllExerciseTypes()));
+        workoutTypeCombo.getSelectionModel().select(0);
+
+        muscleGroupCombo.setItems(FXCollections.observableArrayList(muscleGroupTable.getAllMuscleGroups()));
+        muscleGroupCombo.getSelectionModel().select(0);
+    }
     private void topLogoAnimation() {
 
         // Create a Glow effect
