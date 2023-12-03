@@ -163,13 +163,13 @@ public class FormController {
         topLogoAnimation();
         bottomLogoAnimation();
         populateExerciseListView();
-        populateExerciseComboBox();
+        populateWorkoutPageComboBox();
         exerciseColumn.setCellValueFactory(new PropertyValueFactory<>("exerciseName"));
         setsColumn.setCellValueFactory(new PropertyValueFactory<>("sets"));
         repsColumn.setCellValueFactory(new PropertyValueFactory<>("reps"));
         weightColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
-        populateExerciseComboBox();
+        populateExercisePageCombo();
         refreshTable();
     }
     @FXML
@@ -259,7 +259,7 @@ public class FormController {
     }
 
     //ADD EXERCISE NAMES TO EXERCISE COMBO BOX
-    private void populateExerciseComboBox() {
+    private void populateWorkoutPageComboBox() {
         try {
             DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
 
