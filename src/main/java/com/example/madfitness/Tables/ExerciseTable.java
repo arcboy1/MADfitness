@@ -35,7 +35,7 @@ public class ExerciseTable implements ExerciseDAO {
                 exercise.getMuscleGroup() + "')";
         try {
             db.getConnection().createStatement().execute(query);
-            System.out.println("Inserted Record");
+            System.out.println("Inserted Record yesss");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,7 +50,6 @@ public class ExerciseTable implements ExerciseDAO {
             ResultSet data = getExercises.executeQuery(query);
             while (data.next()) {
                 exercises.add(new Exercise(
-                        data.getInt(DBConst.EXERCISE_COLUMN_ID),
                         data.getString(DBConst.EXERCISE_COLUMN_NAME),
                         data.getString(DBConst.EXERCISE_COLUMN_DESCRIPTION),
                         data.getInt(DBConst.EXERCISE_COLUMN_TYPE),
