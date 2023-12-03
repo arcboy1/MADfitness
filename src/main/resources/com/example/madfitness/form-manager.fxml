@@ -31,20 +31,20 @@
                                        </font>
                                     </Label>
                                     <ComboBox fx:id="addExerciseCombo" layoutX="204.0" layoutY="81.0" prefHeight="33.0" prefWidth="232.0" />
-                                    <TextField fx:id="setsField" layoutX="110.0" layoutY="159.0" prefHeight="32.0" prefWidth="42.0" />
-                                    <TextField fx:id="repsField" layoutX="268.0" layoutY="159.0" prefHeight="32.0" prefWidth="42.0" />
+                                    <TextField fx:id="setsField" layoutX="99.0" layoutY="159.0" prefHeight="32.0" prefWidth="42.0" />
+                                    <TextField fx:id="repsField" layoutX="237.0" layoutY="159.0" prefHeight="32.0" prefWidth="42.0" />
                                     <TextField fx:id="weightField" layoutX="422.0" layoutY="159.0" prefHeight="32.0" prefWidth="64.0" />
                                     <Label fx:id="setsLabel" layoutX="38.0" layoutY="165.0" text="sets" textFill="WHITE">
                                        <font>
                                           <Font name="ROGFonts-Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="repsLabel" layoutX="197.0" layoutY="164.0" text="Reps" textFill="WHITE">
+                                    <Label fx:id="repsLabel" layoutX="178.0" layoutY="164.0" text="Reps" textFill="WHITE">
                                        <font>
                                           <Font name="ROGFonts-Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="weightLabel" layoutX="336.0" layoutY="164.0" text="Weight" textFill="WHITE">
+                                    <Label fx:id="weightLabel" layoutX="302.0" layoutY="164.0" text="Weight (lbs)" textFill="WHITE">
                                        <font>
                                           <Font name="ROGFonts-Regular" size="14.0" />
                                        </font>
@@ -54,7 +54,7 @@
                                           <Font name="ROGFonts-Regular" size="13.0" />
                                        </font>
                                     </Button>
-                                    <Button fx:id="finishWorkoutButton" layoutX="157.0" layoutY="477.0" mnemonicParsing="false" onAction="#finishWorkoutCllicked" prefHeight="41.0" prefWidth="198.0" style="-fx-background-color: #04a2d9;" text="Finish workout" textFill="WHITE">
+                                    <Button fx:id="finishWorkoutButton" layoutX="157.0" layoutY="477.0" mnemonicParsing="false" onAction="#finishWorkoutClicked" prefHeight="41.0" prefWidth="198.0" style="-fx-background-color: #04a2d9;" text="Finish workout" textFill="WHITE">
                                        <font>
                                           <Font name="ROGFonts-Regular" size="13.0" />
                                        </font>
@@ -69,13 +69,13 @@
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <TableView layoutX="183.0" layoutY="66.0" prefHeight="568.0" prefWidth="502.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="exerciseTableView" layoutX="183.0" layoutY="66.0" prefHeight="568.0" prefWidth="502.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columns>
-                                        <TableColumn prefWidth="160.0" text="Exercise" />
-                                        <TableColumn prefWidth="62.0" text="Sets" />
-                                          <TableColumn prefWidth="48.0" text="Reps" />
-                                          <TableColumn prefWidth="96.0" text="Weight" />
-                                          <TableColumn prefWidth="109.0" text="Time" />
+                                        <TableColumn fx:id="exerciseColumn" prefWidth="160.0" text="Exercise" />
+                                        <TableColumn fx:id="setsColumn" prefWidth="62.0" text="Sets" />
+                                          <TableColumn fx:id="repsColumn" prefWidth="48.0" text="Reps" />
+                                          <TableColumn fx:id="weightColumn" prefWidth="119.0" text="Weight(lbs)" />
+                                          <TableColumn fx:id="timeColumn" prefWidth="112.0" text="Time" />
                                       </columns>
                                     </TableView>
                                  </children>

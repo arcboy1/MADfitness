@@ -4,6 +4,7 @@ import com.example.madfitness.Database.DBConst;
 import com.example.madfitness.Database.DatabaseConnection;
 import com.example.madfitness.POJO.DisplayExercise;
 import com.example.madfitness.POJO.Exercise;
+import com.example.madfitness.POJO.ExerciseRecord;
 import com.example.madfitness.Tables.ExerciseTable;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -12,12 +13,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.Glow;
 import javafx.util.Duration;
 
@@ -34,7 +31,7 @@ public class FormController {
     private Button addExerciseButton;
 
     @FXML
-    private ComboBox<String> addExerciseCombo;
+    private ComboBox<Exercise> addExerciseCombo;
 
     @FXML
     private Label addExerciseLabel;
@@ -127,6 +124,41 @@ public class FormController {
     @FXML
     private Label workoutTypeLabel;
 
+
+    //PROPERTIES BELOW ARE FOR THE NEW WORKOUT PAGE TABLEVIEW
+    @FXML
+    private TableView<ExerciseRecord> exerciseTableView;
+    @FXML
+    private TableColumn<ExerciseRecord, String> exerciseColumn;
+
+    @FXML
+    private TableColumn<ExerciseRecord, Integer> setsColumn;
+
+    @FXML
+    private TableColumn<ExerciseRecord, Integer> repsColumn;
+
+    @FXML
+    private TableColumn<ExerciseRecord, Integer> weightColumn;
+
+    @FXML
+    private TableColumn<ExerciseRecord, Integer> timeColumn;
+
+    private ObservableList<ExerciseRecord> exerciseRecords = FXCollections.observableArrayList();
+
+//STOP HERE FOR NEW WORKOUT PAGE TABLEVIEW
+
+    @FXML
+    private void initialize() {
+        topLogoAnimation();
+        bottomLogoAnimation();
+        populateExerciseListView();
+        populateExerciseComboBox();
+        exerciseColumn.setCellValueFactory(new PropertyValueFactory<>("exerciseName"));
+        setsColumn.setCellValueFactory(new PropertyValueFactory<>("sets"));
+        repsColumn.setCellValueFactory(new PropertyValueFactory<>("reps"));
+        weightColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
+        timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+    }
     @FXML
     void addExerciseClicked(ActionEvent event) {
 
@@ -134,11 +166,31 @@ public class FormController {
 
     @FXML
     void addToWorkoutClicked(ActionEvent event) {
+        Exercise selectedExercise = addExerciseCombo.getValue();
+        String exerciseName = selectedExercise.getName();
+        int sets = Integer.parseInt(setsField.getText());
+        int reps = Integer.parseInt(repsField.getText());
+        int weight = Integer.parseInt(weightField.getText());
+        int time = Integer.parseInt(timeField.getText());
 
+        ExerciseRecord exerciseRecord = new ExerciseRecord(exerciseName, sets, reps, weight, time);
+        exerciseRecords.add(exerciseRecord);
+        exerciseTableView.setItems(exerciseRecords);
+
+        // Clear input fields
+        clearInputFields();
+
+    }
+    private void clearInputFields() {
+        addExerciseCombo.setValue(null);
+        setsField.clear();
+        repsField.clear();
+        weightField.clear();
+        timeField.clear();
     }
 
     @FXML
-    void finishWorkoutCllicked(ActionEvent event) {
+    void finishWorkoutClicked(ActionEvent event) {
 
     }
     @FXML
@@ -151,12 +203,9 @@ public class FormController {
     }
 
 
-    @FXML
-    private void initialize() {
-        topLogoAnimation();
-        bottomLogoAnimation();
-        populateExerciseListView();
-    }
+
+
+    //METHOD TO ADD EXERCISE NAMES TO LIST VIEW
     private void populateExerciseListView() {
 
         try {
@@ -182,6 +231,33 @@ public class FormController {
             // Handle the exception as needed
         }
     }
+
+    //ADD EXERCISE NAMES TO EXERCISE COMBO BOX
+    private void populateExerciseComboBox() {
+        try {
+            DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
+
+            // Assuming you have a method in your DatabaseConnection class to retrieve exercise names
+            List<Exercise> exerciseNames = new ArrayList<>();
+
+            try (Statement statement = databaseConnection.getConnection().createStatement()) {
+                ResultSet resultSet = statement.executeQuery("SELECT " + DBConst.EXERCISE_COLUMN_NAME + " FROM " + DBConst.TABLE_EXERCISE);
+
+                while (resultSet.next()) {
+                    exerciseNames.add(new Exercise(
+                            resultSet.getString(DBConst.EXERCISE_COLUMN_NAME)
+                    ));
+                }
+            }
+
+            // Populate the ComboBox with exercise names
+            addExerciseCombo.getItems().addAll(exerciseNames);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception as needed
+        }
+    }
+
     private void topLogoAnimation() {
 
         // Create a Glow effect

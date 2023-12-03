@@ -11,4 +11,7 @@ module com.example.madfitness {
     exports com.example.madfitness.Controller;
     opens com.example.madfitness.Controller to javafx.fxml;
 
+    opens com.example.madfitness.POJO to javafx.base;
+    exports com.example.madfitness.POJO;
+
 }
