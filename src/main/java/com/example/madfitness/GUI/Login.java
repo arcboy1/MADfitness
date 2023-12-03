@@ -32,7 +32,6 @@ public class Login extends Application {
                     String password = savedLoginInfo[1];
                     String databaseName = savedLoginInfo[2];
                     String location = savedLoginInfo[3];
-
                     String jdbcDriver = "com.mysql.cj.jdbc.Driver";
                     String connectionURL = "jdbc:mysql://" + location + "/" + databaseName + "?serverTimezone=UTC";
 

@@ -12,6 +12,8 @@ import com.example.madfitness.Tables.MuscleGroupTable;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -171,6 +173,7 @@ public class FormController {
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
         populateExercisePageCombo();
         refreshTable();
+        setDisplayDescriptionLabel();
     }
     @FXML
     void addExerciseClicked(ActionEvent event) {
@@ -237,12 +240,17 @@ public class FormController {
             List<Exercise> exerciseNames = new ArrayList<>();
 
             try (Statement statement = databaseConnection.getConnection().createStatement()) {
-                ResultSet resultSet = statement.executeQuery("SELECT " + DBConst.EXERCISE_COLUMN_NAME + " FROM " + DBConst.TABLE_EXERCISE);
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM " + DBConst.TABLE_EXERCISE);
 
                 while (resultSet.next()) {
                     exerciseNames.add(new Exercise(
-                            resultSet.getString(DBConst.EXERCISE_COLUMN_NAME)
-                    ));
+                            resultSet.getInt(DBConst.EXERCISE_COLUMN_ID),
+                            resultSet.getString(DBConst.EXERCISE_COLUMN_NAME),
+                            resultSet.getString(DBConst.EXERCISE_COLUMN_DESCRIPTION),
+                            resultSet.getInt(DBConst.EXERCISE_COLUMN_TYPE),
+                            resultSet.getInt(DBConst.EXERCISE_COLUMN_MUSCLE_GROUP_ID)
+
+                            ));
                 }
             }
 
@@ -252,6 +260,19 @@ public class FormController {
             e.printStackTrace();
             // Handle the exception as needed
         }
+    }
+
+    public void setDisplayDescriptionLabel(){
+        exerciseListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Exercise>() {
+            @Override
+            public void changed(ObservableValue<? extends Exercise> observable, Exercise oldValue, Exercise newValue) {
+                if(newValue!=null){
+                    Exercise exercise=ExerciseTable.getInstance().getExercise(((Exercise) newValue).getId());
+                    displayDescriptionLabel.setText("Description: "+exercise.getDescription());
+                }
+            }
+        });
+
     }
     public void refreshTable(){
         exerciseListView.getItems().clear();
