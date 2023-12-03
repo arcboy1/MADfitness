@@ -1,5 +1,6 @@
 package com.example.madfitness.Controller;
 
+import com.example.madfitness.Database.AddWorkoutManager;
 import com.example.madfitness.Database.DBConst;
 import com.example.madfitness.Database.DatabaseConnection;
 import com.example.madfitness.POJO.Exercise;
@@ -216,7 +217,23 @@ public class FormController {
 
     @FXML
     void finishWorkoutClicked(ActionEvent event) {
+        try {
+            int workoutId = AddWorkoutManager.insertNewWorkout();
+            for (ExerciseRecord exerciseRecord : exerciseRecords) {
+                String exerciseName = exerciseRecord.getExerciseName();
 
+                int exerciseId = AddWorkoutManager.getExerciseIdFromDatabase(exerciseName);
+
+                AddWorkoutManager.insertWorkoutExercise(workoutId, exerciseId, exerciseRecord);
+            }
+            exerciseRecords.clear();
+            exerciseTableView.setItems(exerciseRecords);
+
+
+            System.out.println("Workout finished and data saved to the database!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     void deleteWorkoutClicked(ActionEvent event) {
