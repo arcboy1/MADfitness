@@ -59,12 +59,12 @@
                                           <Font name="ROGFonts-Regular" size="13.0" />
                                        </font>
                                     </Button>
-                                    <Label fx:id="setsLabel1" layoutX="118.0" layoutY="212.0" text="Time  (minutes)" textFill="WHITE">
+                                    <Label fx:id="timeLabel" layoutX="118.0" layoutY="212.0" text="Time  (minutes)" textFill="WHITE">
                                        <font>
                                           <Font name="ROGFonts-Regular" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="setsField1" layoutX="284.0" layoutY="206.0" prefHeight="32.0" prefWidth="52.0" />
+                                    <TextField fx:id="timeField" layoutX="284.0" layoutY="206.0" prefHeight="32.0" prefWidth="52.0" />
                                  </children>
                               </AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -87,7 +87,67 @@
           </Tab>
             <Tab fx:id="addWorkoutTab" closable="false" style="-fx-background-color: #04a2d9; -fx-font-family: impact; -fx-font-size: 20;" text="Manage Workouts">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.7411971830985915" layoutX="403.0" layoutY="126.0" orientation="VERTICAL" prefHeight="570.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <SplitPane dividerPositions="0.2519607843137255" layoutX="411.0" layoutY="95.0" prefHeight="418.0" prefWidth="1022.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="478.0">
+                                             <children>
+                                                <TableView layoutX="122.0" layoutY="43.0" prefHeight="416.0" prefWidth="312.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                  <columns>
+                                                    <TableColumn prefWidth="75.0" text="Workout ID" />
+                                                    <TableColumn prefWidth="178.0" text="Workout Date" />
+                                                  </columns>
+                                                </TableView>
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                             <children>
+                                                <TableView layoutX="180.0" layoutY="35.0" prefHeight="416.0" prefWidth="760.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                  <columns>
+                                                    <TableColumn prefWidth="100.0" text="Exercise Name" />
+                                                    <TableColumn prefWidth="74.0" text="Sets" />
+                                                      <TableColumn prefWidth="74.0" text="Reps" />
+                                                      <TableColumn prefWidth="74.0" text="Weight" />
+                                                      <TableColumn prefWidth="109.0" text="Exercise Type" />
+                                                      <TableColumn prefWidth="94.0" text="Muscle Group" />
+                                                      <TableColumn prefWidth="69.0" text="Duration" />
+                                                      <TableColumn prefWidth="165.0" text="Description" />
+                                                  </columns>
+                                                </TableView>
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #3f3f3f;">
+                                 <children>
+                                    <Label fx:id="deleteWorkoutLabel" layoutX="71.0" layoutY="58.0" text="Enter Workout ID" textFill="WHITE">
+                                       <font>
+                                          <Font name="ROGFonts-Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="deleteWorkoutField" layoutX="278.0" layoutY="52.0" prefHeight="32.0" prefWidth="106.0" />
+                                    <Button fx:id="deleteWorkoutButton" layoutX="447.0" layoutY="48.0" mnemonicParsing="false" onAction="#deleteWorkoutClicked" prefHeight="41.0" prefWidth="198.0" style="-fx-background-color: #04a2d9;" text="Delete Workout" textFill="WHITE">
+                                       <font>
+                                          <Font name="ROGFonts-Regular" size="13.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="viewWorkoutDetailsButton" layoutX="723.0" layoutY="48.0" mnemonicParsing="false" onAction="#viewWorkoutClicked" prefHeight="41.0" prefWidth="246.0" style="-fx-background-color: #04a2d9;" text="View Workout Details" textFill="WHITE">
+                                       <font>
+                                          <Font name="ROGFonts-Regular" size="13.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children></AnchorPane>
                </content>
             </Tab>
             <Tab fx:id="exerciseTab" closable="false" style="-fx-background-color: #04a2d9; -fx-font-family: impact; -fx-font-size: 20;" text="Exercises">

@@ -94,13 +94,23 @@ public class FormController {
     private TextField setsField;
 
     @FXML
-    private TextField setsField1;
+    private TextField timeField;
 
     @FXML
     private Label setsLabel;
+    @FXML
+    private Button deleteWorkoutButton;
 
     @FXML
-    private Label setsLabel1;
+    private TextField deleteWorkoutField;
+
+    @FXML
+    private Label deleteWorkoutLabel;
+    @FXML
+    private Button viewWorkoutDetailsButton;
+
+    @FXML
+    private Label timeLabel;
 
     @FXML
     private Tab viewWorkoutTab;
@@ -129,6 +139,14 @@ public class FormController {
 
     @FXML
     void finishWorkoutCllicked(ActionEvent event) {
+
+    }
+    @FXML
+    void deleteWorkoutClicked(ActionEvent event) {
+
+    }
+    @FXML
+    void viewWorkoutClicked(ActionEvent event) {
 
     }
 
