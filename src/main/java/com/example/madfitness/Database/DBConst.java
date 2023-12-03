@@ -41,8 +41,6 @@ public class DBConst {
 
 
     //below are the queries to create the tables in the database
-
-
     public static final String CREATE_TABLE_WORKOUT = "CREATE TABLE " + TABLE_WORKOUT + " (" +
             WORKOUT_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
             WORKOUT_COLUMN_DATE + " DATE, " +
@@ -60,6 +58,32 @@ public class DBConst {
             "FOREIGN KEY (" + EXERCISE_COLUMN_MUSCLE_GROUP_ID + ") " +
             "REFERENCES " + TABLE_MUSCLE_GROUP + "(" + MUSCLE_GROUP_COLUMN_ID + "));";
 
+
+    public static final String CREATE_TABLE_MUSCLE_GROUP = "CREATE TABLE " + TABLE_MUSCLE_GROUP + " (" +
+            MUSCLE_GROUP_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
+            MUSCLE_GROUP_COLUMN_NAME + " VARCHAR(50), " +
+            "PRIMARY KEY (" + MUSCLE_GROUP_COLUMN_ID + "));";
+
+    public static final String CREATE_TABLE_EXERCISE_TYPE = "CREATE TABLE " + TABLE_EXERCISE_TYPE + " (" +
+            EXERCISE_TYPE_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
+            EXERCISE_TYPE_COLUMN_NAME + " VARCHAR(50), " +
+            "PRIMARY KEY (" + EXERCISE_TYPE_COLUMN_ID + "));";
+
+    public static final String CREATE_TABLE_WORKOUT_EXERCISE = "CREATE TABLE " + TABLE_WORKOUT_EXERCISE + " (" +
+            WORKOUT_EXERCISE_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
+            WORKOUT_EXERCISE_COLUMN_WORKOUT_ID + " int NOT NULL, " +
+            WORKOUT_EXERCISE_COLUMN_EXERCISE_ID + " int NOT NULL, " +
+            WORKOUT_EXERCISE_COLUMN_SETS + " int, " +
+            WORKOUT_EXERCISE_COLUMN_REPS + " int, " +
+            WORKOUT_EXERCISE_COLUMN_WEIGHT + " int, " +
+            WORKOUT_EXERCISE_COLUMN_DURATION + " int, " +
+            "PRIMARY KEY (" + WORKOUT_EXERCISE_COLUMN_ID + ")," +
+            "FOREIGN KEY (" + WORKOUT_EXERCISE_COLUMN_WORKOUT_ID + ") " +
+            "REFERENCES " + TABLE_WORKOUT + "(" + WORKOUT_COLUMN_ID + ")," +
+            "FOREIGN KEY (" + WORKOUT_EXERCISE_COLUMN_EXERCISE_ID + ") " +
+            "REFERENCES " + TABLE_EXERCISE + "(" + EXERCISE_COLUMN_ID + "));";
+
+    // INSERT STATEMENTS
     public static final String INSERT_COMMON_EXERCISES = "INSERT INTO " + TABLE_EXERCISE +
             " (" + EXERCISE_COLUMN_NAME + ", " + EXERCISE_COLUMN_DESCRIPTION + ", " +
             EXERCISE_COLUMN_TYPE + ", " + EXERCISE_COLUMN_MUSCLE_GROUP_ID + ") VALUES " +
@@ -86,14 +110,6 @@ public class DBConst {
             "('Running', 'Cardiovascular exercise for overall endurance.', 1, 11), " +
             "('Jump Rope', 'Great for cardio and coordination.', 1, 11), " +
             "('Mountain Climbers', 'Full-body exercise with a focus on cardio and core strength.', 5, 6);";
-
-
-
-
-    public static final String CREATE_TABLE_MUSCLE_GROUP = "CREATE TABLE " + TABLE_MUSCLE_GROUP + " (" +
-            MUSCLE_GROUP_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
-            MUSCLE_GROUP_COLUMN_NAME + " VARCHAR(50), " +
-            "PRIMARY KEY (" + MUSCLE_GROUP_COLUMN_ID + "));";
 
     public static final String INSERT_MUSCLE_GROUPS = "INSERT INTO " + TABLE_MUSCLE_GROUP +
             " (" + MUSCLE_GROUP_COLUMN_NAME + ") VALUES " +
@@ -124,26 +140,5 @@ public class DBConst {
             "('HyperTrophy'), " +
             "('Endurance'), " +
             "('Powerlifting');";
-
-
-    public static final String CREATE_TABLE_EXERCISE_TYPE = "CREATE TABLE " + TABLE_EXERCISE_TYPE + " (" +
-            EXERCISE_TYPE_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
-            EXERCISE_TYPE_COLUMN_NAME + " VARCHAR(50), " +
-            "PRIMARY KEY (" + EXERCISE_TYPE_COLUMN_ID + "));";
-
-
-
-    public static final String CREATE_TABLE_WORKOUT_EXERCISE = "CREATE TABLE " + TABLE_WORKOUT_EXERCISE + " (" +
-            WORKOUT_EXERCISE_COLUMN_ID + " int NOT NULL AUTO_INCREMENT, " +
-            WORKOUT_EXERCISE_COLUMN_WORKOUT_ID + " int NOT NULL, " +
-            WORKOUT_EXERCISE_COLUMN_EXERCISE_ID + " int NOT NULL, " +
-            WORKOUT_EXERCISE_COLUMN_SETS + " int, " +
-            WORKOUT_EXERCISE_COLUMN_REPS + " int, " +
-            WORKOUT_EXERCISE_COLUMN_WEIGHT + " int, " +
-            WORKOUT_EXERCISE_COLUMN_DURATION + " int, " +
-            "PRIMARY KEY (" + WORKOUT_EXERCISE_COLUMN_ID + ")," +
-            "FOREIGN KEY (" + WORKOUT_EXERCISE_COLUMN_WORKOUT_ID + ") " +
-            "REFERENCES " + TABLE_WORKOUT + "(" + WORKOUT_COLUMN_ID + ")," +
-            "FOREIGN KEY (" + WORKOUT_EXERCISE_COLUMN_EXERCISE_ID + ") " +
-            "REFERENCES " + TABLE_EXERCISE + "(" + EXERCISE_COLUMN_ID + "));";
 }
+
