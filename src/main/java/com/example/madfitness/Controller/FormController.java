@@ -2,6 +2,9 @@ package com.example.madfitness.Controller;
 
 import com.example.madfitness.Database.DBConst;
 import com.example.madfitness.Database.DatabaseConnection;
+import com.example.madfitness.POJO.DisplayExercise;
+import com.example.madfitness.POJO.Exercise;
+import com.example.madfitness.Tables.ExerciseTable;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -52,7 +55,7 @@ public class FormController {
     private Label exerciseDescriptionLabel;
 
     @FXML
-    private ListView<String> exerciseListView;
+    private ListView<Exercise> exerciseListView;
 
     @FXML
     private TextField exerciseNameField;
@@ -137,17 +140,20 @@ public class FormController {
         populateExerciseListView();
     }
     private void populateExerciseListView() {
+
         try {
             DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
 
             // Assuming you have a method in your DatabaseConnection class to retrieve exercise names
-            List<String> exerciseNames = new ArrayList<>();
+            List<Exercise> exerciseNames = new ArrayList<>();
 
             try (Statement statement = databaseConnection.getConnection().createStatement()) {
                 ResultSet resultSet = statement.executeQuery("SELECT " + DBConst.EXERCISE_COLUMN_NAME + " FROM " + DBConst.TABLE_EXERCISE);
 
                 while (resultSet.next()) {
-                    exerciseNames.add(resultSet.getString(DBConst.EXERCISE_COLUMN_NAME));
+                    exerciseNames.add(new Exercise(
+                            resultSet.getString(DBConst.EXERCISE_COLUMN_NAME)
+                    ));
                 }
             }
 
