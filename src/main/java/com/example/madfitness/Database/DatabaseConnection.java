@@ -8,6 +8,17 @@ public class DatabaseConnection {
 
     private DatabaseConnection() {
     }
+    //constructor without createTable methods to test connection
+    private DatabaseConnection(String jdbcDriver, String connectionURL, String username, String password) {
+        try {
+            Class.forName(jdbcDriver);
+            connection = DriverManager.getConnection(connectionURL, username, password);
+
+            System.out.println("Test Connection Successful");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void setLoginInfo(String jdbcDriver, String connectionURL, String username, String password, String databaseName) {
         try {
             Class.forName(jdbcDriver);
@@ -40,17 +51,7 @@ public class DatabaseConnection {
 
 
 
-    //constructor without createTable methods to test connection
-    private DatabaseConnection(String jdbcDriver, String connectionURL, String username, String password) {
-        try {
-            Class.forName(jdbcDriver);
-            connection = DriverManager.getConnection(connectionURL, username, password);
 
-            System.out.println("Test Connection Successful");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public static DatabaseConnection getInstance() {
         if (instance == null) {
