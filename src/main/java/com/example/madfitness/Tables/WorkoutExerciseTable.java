@@ -94,6 +94,41 @@ public class WorkoutExerciseTable implements WorkoutExerciseDAO {
         return null;
     }
 
+    public void deleteWorkoutExercisesForWorkout(int workoutId) {
+        String query = "DELETE FROM " + DBConst.TABLE_WORKOUT_EXERCISE +
+                " WHERE " + DBConst.WORKOUT_EXERCISE_COLUMN_WORKOUT_ID + " = " + workoutId;
+        try {
+            db.getConnection().createStatement().execute(query);
+            System.out.println("Deleted Workout Exercises for Workout ID: " + workoutId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ArrayList<WorkoutExercise> getWorkoutExercisesForWorkout(int workoutId) {
+        String query = "SELECT * FROM " + DBConst.TABLE_WORKOUT_EXERCISE +
+                " WHERE " + DBConst.WORKOUT_EXERCISE_COLUMN_WORKOUT_ID + " = " + workoutId;
+        ArrayList<WorkoutExercise> workoutExercises = new ArrayList<>();
+        try {
+            Statement getWorkoutExercises = db.getConnection().createStatement();
+            ResultSet data = getWorkoutExercises.executeQuery(query);
+            while (data.next()) {
+                workoutExercises.add(new WorkoutExercise(
+                        data.getInt(DBConst.WORKOUT_EXERCISE_COLUMN_ID),
+                        data.getInt(DBConst.WORKOUT_EXERCISE_COLUMN_WORKOUT_ID),
+                        data.getInt(DBConst.WORKOUT_EXERCISE_COLUMN_EXERCISE_ID),
+                        data.getInt(DBConst.WORKOUT_EXERCISE_COLUMN_SETS),
+                        data.getInt(DBConst.WORKOUT_EXERCISE_COLUMN_REPS),
+                        data.getInt(DBConst.WORKOUT_EXERCISE_COLUMN_WEIGHT),
+                        data.getInt(DBConst.WORKOUT_EXERCISE_COLUMN_DURATION)
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return workoutExercises;
+    }
+
     @Override
     public void updateWorkoutExercise(WorkoutExercise workoutExercise) {
         String query = "UPDATE " + DBConst.TABLE_WORKOUT_EXERCISE + " SET " +

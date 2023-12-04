@@ -97,26 +97,26 @@
                                       <items>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="478.0">
                                              <children>
-                                                <TableView layoutX="122.0" layoutY="43.0" prefHeight="416.0" prefWidth="312.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <TableView fx:id="workoutTableView" layoutX="122.0" layoutY="43.0" prefHeight="416.0" prefWidth="312.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <columns>
-                                                    <TableColumn prefWidth="75.0" text="Workout ID" />
-                                                    <TableColumn prefWidth="178.0" text="Workout Date" />
+                                                    <TableColumn fx:id="workoutIdColumn" prefWidth="75.0" text="Workout ID" />
+                                                    <TableColumn fx:id="workoutDateColumn" prefWidth="178.0" text="Workout Date" />
                                                   </columns>
                                                 </TableView>
                                              </children>
                                           </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                              <children>
-                                                <TableView layoutX="180.0" layoutY="35.0" prefHeight="416.0" prefWidth="760.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <TableView fx:id="workoutExerciseTableView" layoutX="180.0" layoutY="35.0" prefHeight="416.0" prefWidth="760.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <columns>
-                                                    <TableColumn prefWidth="100.0" text="Exercise Name" />
-                                                    <TableColumn prefWidth="74.0" text="Sets" />
-                                                      <TableColumn prefWidth="74.0" text="Reps" />
-                                                      <TableColumn prefWidth="74.0" text="Weight" />
-                                                      <TableColumn prefWidth="109.0" text="Exercise Type" />
-                                                      <TableColumn prefWidth="94.0" text="Muscle Group" />
-                                                      <TableColumn prefWidth="69.0" text="Duration" />
-                                                      <TableColumn prefWidth="165.0" text="Description" />
+                                                    <TableColumn fx:id="workoutExerciseNameColumn" prefWidth="100.0" text="Exercise Name" />
+                                                    <TableColumn fx:id="workoutExerciseSetsColumn" prefWidth="74.0" text="Sets" />
+                                                      <TableColumn fx:id="workoutExerciseRepsColumn" prefWidth="74.0" text="Reps" />
+                                                      <TableColumn fx:id="workoutExerciseWeightColumn" prefWidth="74.0" text="Weight" />
+                                                      <TableColumn fx:id="workoutExerciseTypeColumn" prefWidth="109.0" text="Exercise Type" />
+                                                      <TableColumn fx:id="workoutExerciseMuscleGroupColumn" prefWidth="94.0" text="Muscle Group" />
+                                                      <TableColumn fx:id="workoutExerciseDurationColumn" prefWidth="69.0" text="Duration" />
+                                                      <TableColumn fx:id="workoutExerciseDescriptionColumn" prefWidth="165.0" text="Description" />
                                                   </columns>
                                                 </TableView>
                                              </children>

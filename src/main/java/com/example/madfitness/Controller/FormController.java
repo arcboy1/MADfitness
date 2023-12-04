@@ -3,13 +3,8 @@ package com.example.madfitness.Controller;
 import com.example.madfitness.Database.AddWorkoutManager;
 import com.example.madfitness.Database.DBConst;
 import com.example.madfitness.Database.DatabaseConnection;
-import com.example.madfitness.POJO.Exercise;
-import com.example.madfitness.POJO.ExerciseRecord;
-import com.example.madfitness.POJO.ExerciseType;
-import com.example.madfitness.POJO.MuscleGroup;
-import com.example.madfitness.Tables.ExerciseTable;
-import com.example.madfitness.Tables.ExerciseTypeTable;
-import com.example.madfitness.Tables.MuscleGroupTable;
+import com.example.madfitness.POJO.*;
+import com.example.madfitness.Tables.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -28,6 +23,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class FormController {
@@ -36,6 +32,8 @@ public class FormController {
     ExerciseTable exerciseTable = ExerciseTable.getInstance();
     ExerciseTypeTable exerciseTypeTable = ExerciseTypeTable.getInstance();
     MuscleGroupTable muscleGroupTable = MuscleGroupTable.getInstance();
+    WorkoutTable workoutTable = WorkoutTable.getInstance();
+
 
 
     @FXML
@@ -160,12 +158,61 @@ public class FormController {
 
 //STOP HERE FOR NEW WORKOUT PAGE TABLEVIEW
 
+//PROPERTIES BELOW ARE FOR THE MANAGE WORKOUTS PAGE
+
+    //WORKOUT TABLEVIEW
+
+    @FXML
+    private TableView<Workout> workoutTableView;
+
+    @FXML
+    private TableColumn<Workout, Integer> workoutIdColumn;
+
+    @FXML
+    private TableColumn<Workout, Date> workoutDateColumn;
+
+
+    //WORKOUT_EXERCISE TABLEVIEW
+
+    @FXML
+    private TableView<WorkoutExercise> workoutExerciseTableView;
+
+    @FXML
+    private TableColumn<WorkoutExercise, ?> workoutExerciseNameColumn;
+
+    @FXML
+    private TableColumn<WorkoutExercise, ?> workoutExerciseSetsColumn;
+
+    @FXML
+    private TableColumn<WorkoutExercise, ?> workoutExerciseRepsColumn;
+
+    @FXML
+    private TableColumn<WorkoutExercise, ?> workoutExerciseWeightColumn;
+
+    @FXML
+    private TableColumn<WorkoutExercise, ?> workoutExerciseTypeColumn;
+
+    @FXML
+    private TableColumn<WorkoutExercise, ?> workoutExerciseMuscleGroupColumn;
+
+    @FXML
+    private TableColumn<WorkoutExercise, ?> workoutExerciseDurationColumn;
+
+    @FXML
+    private TableColumn<WorkoutExercise, ?> workoutExerciseDescriptionColumn;
+
+
+
+//STOP HERE FOR THE MANAGE WORKOUTS PAGE
+
+
 
     @FXML
     private void initialize() {
         topLogoAnimation();
         bottomLogoAnimation();
         populateExerciseListView();
+        populateWorkoutTableView();
         populateWorkoutPageComboBox();
         exerciseColumn.setCellValueFactory(new PropertyValueFactory<>("exerciseName"));
         setsColumn.setCellValueFactory(new PropertyValueFactory<>("sets"));
@@ -176,6 +223,19 @@ public class FormController {
         refreshTable();
         setDisplayDescriptionLabel();
     }
+
+    private void populateWorkoutTableView() {
+        // Assuming you have a method in your WorkoutTable class to retrieve all workouts
+        ArrayList<Workout> allWorkouts = WorkoutTable.getInstance().getAllWorkouts();
+
+        // Populate the workoutTableView with data
+        workoutTableView.setItems(FXCollections.observableArrayList(allWorkouts));
+
+        // Set up the columns to display the data correctly
+        workoutIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        workoutDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+    }
+
     @FXML
     void addExerciseClicked(ActionEvent event) {
         Exercise exercise = new Exercise(
@@ -234,11 +294,47 @@ public class FormController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        //Refreshes the table
+        refreshTable();
     }
     @FXML
     void deleteWorkoutClicked(ActionEvent event) {
+        // Get the ID entered by the user
+        String workoutIdString = deleteWorkoutField.getText();
 
+        // Check if the entered value is not empty
+        if (!workoutIdString.isEmpty()) {
+            try {
+                // Parse the ID to an integer
+                int workoutId = Integer.parseInt(workoutIdString);
+
+                // Print the workout ID for debugging
+                System.out.println("Deleting workout with ID: " + workoutId);
+
+                // Call the deleteWorkoutExercisesForWorkout method to delete workout exercises
+                WorkoutExerciseTable.getInstance().deleteWorkoutExercisesForWorkout(workoutId);
+
+                // Call the deleteWorkout method to delete the workout
+                WorkoutTable.getInstance().deleteWorkout(workoutId);
+
+                // Optionally, refresh your UI or perform other actions after deletion
+                refreshTable();  // Uncomment this line if you have a method for refreshing your table
+
+                System.out.println("Workout deleted successfully!");
+            } catch (NumberFormatException e) {
+                // Handle the case where the entered value is not a valid integer
+                System.err.println("Invalid workout ID format");
+            } catch (SQLException e) {
+                // Handle the case where an SQL exception occurs during deletion
+                e.printStackTrace();
+            }
+        } else {
+            // Handle the case where the user didn't enter an ID
+            System.err.println("Please enter a workout ID");
+        }
     }
+    
     @FXML
     void viewWorkoutClicked(ActionEvent event) {
 
@@ -291,9 +387,13 @@ public class FormController {
         });
 
     }
+
     public void refreshTable(){
         exerciseListView.getItems().clear();
         populateExerciseListView();
+        workoutTableView.getItems().clear();
+        populateWorkoutTableView();
+
     }
 
     //ADD EXERCISE NAMES TO EXERCISE COMBO BOX

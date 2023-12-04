@@ -60,6 +60,15 @@ public class WorkoutTable implements WorkoutDAO {
         return null;
     }
 
+    public void deleteWorkout(int workoutId) throws SQLException {
+        String deleteQuery = "DELETE FROM " + DBConst.TABLE_WORKOUT +
+                " WHERE " + DBConst.WORKOUT_COLUMN_ID + " = " + workoutId;
+
+        try (Statement statement = db.getConnection().createStatement()) {
+            statement.executeUpdate(deleteQuery);
+        }
+    }
+
     public static WorkoutTable getInstance() {
         if (instance == null) {
             instance = new WorkoutTable();
