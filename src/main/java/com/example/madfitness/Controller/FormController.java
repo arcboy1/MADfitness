@@ -1,5 +1,6 @@
 package com.example.madfitness.Controller;
 
+import com.example.madfitness.DAO.WorkoutExerciseDAO;
 import com.example.madfitness.Database.AddWorkoutManager;
 import com.example.madfitness.Database.DBConst;
 import com.example.madfitness.Database.DatabaseConnection;
@@ -19,6 +20,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.Glow;
 import javafx.util.Duration;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -212,11 +214,23 @@ public class FormController {
         populateExerciseListView();
         populateWorkoutTableView();
         populateWorkoutPageComboBox();
+
+        //new workout table
         exerciseColumn.setCellValueFactory(new PropertyValueFactory<>("exerciseName"));
         setsColumn.setCellValueFactory(new PropertyValueFactory<>("sets"));
         repsColumn.setCellValueFactory(new PropertyValueFactory<>("reps"));
         weightColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
         timeColumn.setCellValueFactory(new PropertyValueFactory<>("time"));
+
+        //Workout manager table
+        workoutExerciseNameColumn.setCellValueFactory(new PropertyValueFactory<>("workoutExerciseName"));
+        workoutExerciseSetsColumn.setCellValueFactory(new PropertyValueFactory<>("workoutExerciseSets"));
+        workoutExerciseRepsColumn.setCellValueFactory(new PropertyValueFactory<>("workoutExerciseReps"));
+        workoutExerciseWeightColumn.setCellValueFactory(new PropertyValueFactory<>("workoutExerciseWeight"));
+        workoutExerciseDurationColumn.setCellValueFactory(new PropertyValueFactory<>("workoutExerciseDuration"));
+        workoutExerciseTypeColumn.setCellValueFactory(new PropertyValueFactory<>("workoutExerciseType"));
+        workoutExerciseMuscleGroupColumn.setCellValueFactory(new PropertyValueFactory<>("workoutExerciseMuscle"));
+
         populateExercisePageCombo();
         refreshTable();
         setDisplayDescriptionLabel();
@@ -301,44 +315,63 @@ public class FormController {
     }
     @FXML
     void deleteWorkoutClicked(ActionEvent event) {
-        // Get the ID entered by the user
         String workoutIdString = deleteWorkoutField.getText();
+        DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
 
-        // Check if the entered value is not empty
         if (!workoutIdString.isEmpty()) {
             try {
-                // Parse the ID to an integer
                 int workoutId = Integer.parseInt(workoutIdString);
 
-                // Print the workout ID for debugging
-                System.out.println("Deleting workout with ID: " + workoutId);
+                // Delete workout exercises first
+                String exerciseQuery = "DELETE FROM " + DBConst.TABLE_WORKOUT_EXERCISE +
+                        " WHERE " + DBConst.WORKOUT_EXERCISE_COLUMN_WORKOUT_ID + " = " + workoutId;
 
-                // Call the deleteWorkoutExercisesForWorkout method to delete workout exercises
-                WorkoutExerciseTable.getInstance().deleteWorkoutExercisesForWorkout(workoutId);
+                try (Statement exerciseStatement = databaseConnection.getConnection().createStatement()) {
+                    if (exerciseStatement.executeUpdate(exerciseQuery) > 0) {
+                        System.out.println("Deleted Workout Exercises for Workout ID: " + workoutId);
 
-                // Call the deleteWorkout method to delete the workout
-                WorkoutTable.getInstance().deleteWorkout(workoutId);
+                        // Now, delete the workout
+                        String workoutQuery = "DELETE FROM " + DBConst.TABLE_WORKOUT +
+                                " WHERE " + DBConst.WORKOUT_COLUMN_ID + " = " + workoutId;
 
-                // Optionally, refresh your UI or perform other actions after deletion
-                refreshTable();  // Uncomment this line if you have a method for refreshing your table
-
-                System.out.println("Workout deleted successfully!");
+                        try (Statement workoutStatement = databaseConnection.getConnection().createStatement()) {
+                            if (workoutStatement.executeUpdate(workoutQuery) > 0) {
+                                System.out.println("Workout deleted successfully!");
+                                refreshTable();
+                            } else {
+                                System.out.println("No workout found with ID: " + workoutId);
+                            }
+                        }
+                    } else {
+                        System.out.println("No workout found with ID: " + workoutId);
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             } catch (NumberFormatException e) {
-                // Handle the case where the entered value is not a valid integer
                 System.err.println("Invalid workout ID format");
-            } catch (SQLException e) {
-                // Handle the case where an SQL exception occurs during deletion
-                e.printStackTrace();
             }
         } else {
-            // Handle the case where the user didn't enter an ID
             System.err.println("Please enter a workout ID");
         }
     }
-    
+
+
+
+
     @FXML
     void viewWorkoutClicked(ActionEvent event) {
+        String workoutId = deleteWorkoutField.getText();
 
+        WorkoutExerciseDAO exerciseDAO = new WorkoutExerciseDAO();
+
+
+        // Assuming you have a method in your DAO to get exercises based on workoutId
+        List<WorkoutExercise> exercises = exerciseDAO.getExercisesForWorkout(workoutId);
+
+        // Update the TableView
+        workoutExerciseTableView.getItems().clear();
+        workoutExerciseTableView.getItems().addAll(exercises);
     }
 
 

@@ -59,7 +59,7 @@
                                           <Font name="Impact" size="24.0" />
                                        </font>
                                     </Button>
-                                    <Label fx:id="timeLabel" layoutX="139.0" layoutY="211.0" text="Time  (minutes)" textFill="WHITE">
+                                    <Label fx:id="timeLabel" layoutX="112.0" layoutY="211.0" text="Duration  (minutes)" textFill="WHITE">
                                        <font>
                                           <Font name="Impact" size="20.0" />
                                        </font>
@@ -75,7 +75,7 @@
                                         <TableColumn fx:id="setsColumn" prefWidth="62.0" text="Sets" />
                                           <TableColumn fx:id="repsColumn" prefWidth="48.0" text="Reps" />
                                           <TableColumn fx:id="weightColumn" prefWidth="119.0" text="Weight(lbs)" />
-                                          <TableColumn fx:id="timeColumn" prefWidth="112.0" text="Time" />
+                                          <TableColumn fx:id="timeColumn" prefWidth="112.0" text="Duration(mins)" />
                                       </columns>
                                     </TableView>
                                  </children>
@@ -110,12 +110,12 @@
                                                 <TableView fx:id="workoutExerciseTableView" layoutX="180.0" layoutY="35.0" prefHeight="416.0" prefWidth="760.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <columns>
                                                     <TableColumn fx:id="workoutExerciseNameColumn" prefWidth="100.0" text="Exercise Name" />
-                                                    <TableColumn fx:id="workoutExerciseSetsColumn" prefWidth="74.0" text="Sets" />
-                                                      <TableColumn fx:id="workoutExerciseRepsColumn" prefWidth="74.0" text="Reps" />
-                                                      <TableColumn fx:id="workoutExerciseWeightColumn" prefWidth="112.0" text="Weight" />
-                                                      <TableColumn fx:id="workoutExerciseTypeColumn" prefWidth="158.0" text="Exercise Type" />
-                                                      <TableColumn fx:id="workoutExerciseMuscleGroupColumn" prefWidth="151.0" text="Muscle Group" />
-                                                      <TableColumn fx:id="workoutExerciseDurationColumn" prefWidth="90.0" text="Duration" />
+                                                    <TableColumn fx:id="workoutExerciseSetsColumn" prefWidth="63.0" text="Sets" />
+                                                      <TableColumn fx:id="workoutExerciseRepsColumn" prefWidth="68.0" text="Reps" />
+                                                      <TableColumn fx:id="workoutExerciseWeightColumn" prefWidth="116.0" text="Weight(lbs)" />
+                                                      <TableColumn fx:id="workoutExerciseTypeColumn" prefWidth="147.0" text="Exercise Type" />
+                                                      <TableColumn fx:id="workoutExerciseMuscleGroupColumn" prefWidth="143.0" text="Muscle Group" />
+                                                      <TableColumn fx:id="workoutExerciseDurationColumn" prefWidth="122.0" text="Duration(mins)" />
                                                   </columns>
                                                 </TableView>
                                              </children>

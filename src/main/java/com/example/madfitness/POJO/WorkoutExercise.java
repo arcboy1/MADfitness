@@ -1,82 +1,100 @@
 package com.example.madfitness.POJO;
 
 public class WorkoutExercise {
-    private int id;
-    private int workoutId;
-    private int exerciseId;
-    private int sets;
-    private int reps;
-    private int weight;
-    private int duration;
-
+    private String workoutExerciseName;
+    private int workoutExerciseSets;
+    private int workoutExerciseReps;
+    private double workoutExerciseWeight;
+    private int workoutExerciseDuration;
+    private String workoutExerciseType;
+    private String workoutExerciseMuscle;
     public WorkoutExercise() {
-
-    }
-    public WorkoutExercise(int id, int workoutId, int exerciseId, int sets, int reps, int weight, int duration) {
-        this.id = id;
-        this.workoutId = workoutId;
-        this.exerciseId = exerciseId;
-        this.sets = sets;
-        this.reps = reps;
-        this.weight = weight;
-        this.duration = duration;
+        // Empty constructor
     }
 
-    public int getId() {
-        return id;
+    public String getWorkoutExerciseName() {
+        return workoutExerciseName;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public WorkoutExercise setWorkoutExerciseName(String workoutExerciseName) {
+        this.workoutExerciseName = workoutExerciseName;
+        return this;
     }
 
-    public int getWorkoutId() {
-        return workoutId;
+    public int getWorkoutExerciseSets() {
+        return workoutExerciseSets;
     }
 
-    public void setWorkoutId(int workoutId) {
-        this.workoutId = workoutId;
+    public WorkoutExercise setWorkoutExerciseSets(int workoutExerciseSets) {
+        this.workoutExerciseSets = workoutExerciseSets;
+        return this;
     }
 
-    public int getExerciseId() {
-        return exerciseId;
+    public int getWorkoutExerciseReps() {
+        return workoutExerciseReps;
     }
 
-    public void setExerciseId(int exerciseId) {
-        this.exerciseId = exerciseId;
+    public WorkoutExercise setWorkoutExerciseReps(int workoutExerciseReps) {
+        this.workoutExerciseReps = workoutExerciseReps;
+        return this;
     }
 
-    public int getSets() {
-        return sets;
+    public double getWorkoutExerciseWeight() {
+        return workoutExerciseWeight;
     }
 
-    public void setSets(int sets) {
-        this.sets = sets;
+    public WorkoutExercise setWorkoutExerciseWeight(double workoutExerciseWeight) {
+        this.workoutExerciseWeight = workoutExerciseWeight;
+        return this;
     }
 
-    public int getReps() {
-        return reps;
+    public int getWorkoutExerciseDuration() {
+        return workoutExerciseDuration;
     }
 
-    public void setReps(int reps) {
-        this.reps = reps;
+    public WorkoutExercise setWorkoutExerciseDuration(int workoutExerciseDuration) {
+        this.workoutExerciseDuration = workoutExerciseDuration;
+        return this;
     }
 
-    public int getWeight() {
-        return weight;
+    public String getWorkoutExerciseType() {
+        return workoutExerciseType;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
+    public WorkoutExercise setWorkoutExerciseType(String workoutExerciseType) {
+        this.workoutExerciseType = workoutExerciseType;
+        return this;
     }
 
-    public int getDuration() {
-        return duration;
+    public String getWorkoutExerciseMuscle() {
+        return workoutExerciseMuscle;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public WorkoutExercise setWorkoutExerciseMuscle(String workoutExerciseMuscle) {
+        this.workoutExerciseMuscle = workoutExerciseMuscle;
+        return this;
     }
 
+    public WorkoutExercise(String workoutExerciseName, int workoutExerciseSets, int workoutExerciseReps, double workoutExerciseWeight, int workoutExerciseDuration, String workoutExerciseType, String workoutExerciseMuscle) {
+        this.workoutExerciseName = workoutExerciseName;
+        this.workoutExerciseSets = workoutExerciseSets;
+        this.workoutExerciseReps = workoutExerciseReps;
+        this.workoutExerciseWeight = workoutExerciseWeight;
+        this.workoutExerciseDuration = workoutExerciseDuration;
+        this.workoutExerciseType = workoutExerciseType;
+        this.workoutExerciseMuscle = workoutExerciseMuscle;
+    }
 
+    @Override
+    public String toString() {
+        return "WorkoutExercise{" +
+                "workoutExerciseName='" + workoutExerciseName + '\'' +
+                ", workoutExerciseSets=" + workoutExerciseSets +
+                ", workoutExerciseReps=" + workoutExerciseReps +
+                ", workoutExerciseWeight=" + workoutExerciseWeight +
+                ", workoutExerciseDuration=" + workoutExerciseDuration +
+                ", workoutExerciseType='" + workoutExerciseType + '\'' +
+                ", workoutExerciseMuscle='" + workoutExerciseMuscle + '\'' +
+                '}';
+    }
 }
