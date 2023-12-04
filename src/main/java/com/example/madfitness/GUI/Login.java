@@ -83,6 +83,21 @@ public class Login extends Application {
             e.printStackTrace();
         }
     }
+    /*
+    SELECT
+    exercise.exercise_name AS exercise_name,
+    workout_exercise.sets AS sets,
+    workout_exercise.reps AS reps,
+    workout_exercise.weight AS weight,
+    workout_exercise.duration AS duration,
+    exercise_type.exercise_type_name AS type,
+    muscle_group.muscle_group_name AS muscle
+    FROM workout_exercise
+    JOIN exercise ON workout_exercise.exercise_id = exercise.exercise_id
+    JOIN exercise_type ON exercise.exercise_type = exercise_type.exercise_type_id
+    JOIN muscle_group ON exercise.muscle_group_id = muscle_group.muscle_group_id
+    */
+
 
     public static void main(String[] args) {
         launch(args);

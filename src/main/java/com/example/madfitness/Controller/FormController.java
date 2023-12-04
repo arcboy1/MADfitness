@@ -247,6 +247,7 @@ public class FormController {
         exerciseTable.createExercise(exercise);
         System.out.println("AddExercise Clicked");
         refreshTable();
+        clearInputFields();
 
     }
 
@@ -273,6 +274,8 @@ public class FormController {
         repsField.clear();
         weightField.clear();
         timeField.clear();
+        exerciseDescriptionField.clear();
+        exerciseNameField.clear();
     }
 
     @FXML
