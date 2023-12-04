@@ -198,8 +198,6 @@ public class FormController {
     @FXML
     private TableColumn<WorkoutExercise, ?> workoutExerciseDurationColumn;
 
-    @FXML
-    private TableColumn<WorkoutExercise, ?> workoutExerciseDescriptionColumn;
 
 
 
