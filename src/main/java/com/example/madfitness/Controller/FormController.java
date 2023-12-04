@@ -393,6 +393,8 @@ public class FormController {
         populateExerciseListView();
         workoutTableView.getItems().clear();
         populateWorkoutTableView();
+        addExerciseCombo.getItems().clear();
+        populateWorkoutPageComboBox();
 
     }
 

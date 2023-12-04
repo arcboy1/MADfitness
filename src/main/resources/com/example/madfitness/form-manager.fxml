@@ -99,8 +99,8 @@
                                              <children>
                                                 <TableView fx:id="workoutTableView" layoutX="122.0" layoutY="43.0" prefHeight="416.0" prefWidth="312.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <columns>
-                                                    <TableColumn fx:id="workoutIdColumn" prefWidth="75.0" text="Workout ID" />
-                                                    <TableColumn fx:id="workoutDateColumn" prefWidth="178.0" text="Workout Date" />
+                                                    <TableColumn fx:id="workoutIdColumn" prefWidth="96.0" text="Workout ID" />
+                                                    <TableColumn fx:id="workoutDateColumn" prefWidth="157.0" text="Workout Date" />
                                                   </columns>
                                                 </TableView>
                                              </children>
