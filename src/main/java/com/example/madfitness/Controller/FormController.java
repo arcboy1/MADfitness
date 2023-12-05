@@ -354,6 +354,7 @@ public class FormController {
         } else {
             System.err.println("Please enter a workout ID");
         }
+        refreshTable();
     }
 
 
@@ -429,6 +430,7 @@ public class FormController {
         populateWorkoutTableView();
         addExerciseCombo.getItems().clear();
         populateWorkoutPageComboBox();
+        workoutExerciseTableView.getItems().clear();
 
     }
 
