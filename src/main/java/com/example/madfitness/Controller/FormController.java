@@ -15,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.Glow;
@@ -88,6 +89,21 @@ public class FormController {
 
     @FXML
     private Label muscleGroupLabel;
+
+    @FXML
+    private PieChart muscleGroupPieChart;
+
+    @FXML
+    private Label pieLabelExerciseType;
+
+    @FXML
+    private Label pieLabelMuscleGroup;
+
+    @FXML
+    private Button pieRefreshExerciseType;
+
+    @FXML
+    private Button pieRefreshMuscleGroup;
 
     @FXML
     private Tab progressTab;
@@ -511,6 +527,16 @@ public class FormController {
         // Play the breathing glow effect
         glowTimeline.setCycleCount(Timeline.INDEFINITE); // Make the breathing effect repeat indefinitely
         glowTimeline.play();
+    }
+
+    @FXML
+    void refreshExerciseTypeClicked(ActionEvent event) {
+
+    }
+
+    @FXML
+    void refreshMuscleGroupClicked(ActionEvent event) {
+
     }
 
 
