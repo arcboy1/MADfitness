@@ -90,20 +90,6 @@ public class FormController {
     @FXML
     private Label muscleGroupLabel;
 
-    @FXML
-    private PieChart muscleGroupPieChart;
-
-    @FXML
-    private Label pieLabelExerciseType;
-
-    @FXML
-    private Label pieLabelMuscleGroup;
-
-    @FXML
-    private Button pieRefreshExerciseType;
-
-    @FXML
-    private Button pieRefreshMuscleGroup;
 
     @FXML
     private Tab progressTab;
@@ -116,6 +102,15 @@ public class FormController {
 
     @FXML
     private TextField setsField;
+
+    @FXML
+    private PieChart statsExercisePieChart;
+
+    @FXML
+    private Label statsLabel;
+
+    @FXML
+    private Button statsRefreshButton;
 
     @FXML
     private TextField timeField;
@@ -530,14 +525,11 @@ public class FormController {
     }
 
     @FXML
-    void refreshExerciseTypeClicked(ActionEvent event) {
+    void statsRefreshClicked(ActionEvent event) {
 
     }
 
-    @FXML
-    void refreshMuscleGroupClicked(ActionEvent event) {
 
-    }
 
 
 }

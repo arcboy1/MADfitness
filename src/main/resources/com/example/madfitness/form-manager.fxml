@@ -221,24 +221,13 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <PieChart fx:id="muscleGroupPieChart" layoutX="5.0" layoutY="7.0" style="-fx-background-color: white;" />
-                        <PieChart fx:id="exerciseTypePieChart" layoutX="512.0" layoutY="7.0" style="-fx-background-color: white;" />
-                        <Label fx:id="pieLabelMuscleGroup" layoutX="14.0" layoutY="490.0" prefHeight="41.0" prefWidth="163.0" text="Muscle Group Data" textFill="WHITE">
+                        <PieChart fx:id="statsExercisePieChart" layoutX="382.0" layoutY="27.0" prefHeight="488.0" prefWidth="583.0" style="-fx-background-color: white;" />
+                        <Label fx:id="statsLabel" layoutX="110.0" layoutY="63.0" prefHeight="41.0" prefWidth="163.0" text="Exercise Statistics" textFill="WHITE">
                            <font>
                               <Font name="Impact" size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="pieLabelExerciseType" layoutX="526.0" layoutY="490.0" prefHeight="41.0" prefWidth="166.0" text="Exercise Type Data" textFill="WHITE">
-                           <font>
-                              <Font name="Impact" size="20.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="pieRefreshMuscleGroup" layoutX="193.0" layoutY="494.0" mnemonicParsing="false" onAction="#refreshMuscleGroupClicked" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #04a2d9;" text="REFRESH" textFill="WHITE">
-                           <font>
-                              <Font name="Impact" size="17.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="pieRefreshExerciseType" layoutX="710.0" layoutY="494.0" mnemonicParsing="false" onAction="#refreshExerciseTypeClicked" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #04a2d9;" text="REFRESH" textFill="WHITE">
+                        <Button fx:id="statsRefreshButton" layoutX="101.0" layoutY="115.0" mnemonicParsing="false" onAction="#statsRefreshClicked" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #04a2d9;" text="REFRESH" textFill="WHITE">
                            <font>
                               <Font name="Impact" size="17.0" />
                            </font>
