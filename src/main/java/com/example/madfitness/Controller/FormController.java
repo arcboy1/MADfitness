@@ -25,17 +25,67 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class FormController {
+
+
 
     //Creating all the tables
     ExerciseTable exerciseTable = ExerciseTable.getInstance();
     ExerciseTypeTable exerciseTypeTable = ExerciseTypeTable.getInstance();
     MuscleGroupTable muscleGroupTable = MuscleGroupTable.getInstance();
     WorkoutTable workoutTable = WorkoutTable.getInstance();
+    WorkoutExerciseTable2 workoutExerciseTable2 = WorkoutExerciseTable2.getInstance();
+
+    //Charts
+    public void generateExercisesChart() {
+        try {
+            ArrayList<WorkoutExercise2> allWorkoutExercises = workoutExerciseTable2.getAllWorkoutExercises();
+
+            // Print the size of allWorkoutExercises for debugging
+            System.out.println("Number of Workout Exercises: " + allWorkoutExercises.size());
+
+            // Create a map to store exercise counts
+            Map<String, Integer> exerciseCounts = new HashMap<>();
+
+            // Count occurrences of each exercise
+            for (WorkoutExercise2 workoutExercise : allWorkoutExercises) {
+                String exerciseName = getExerciseNameById(workoutExercise.getExerciseId());
+
+                // Increment count or initialize to 1
+                exerciseCounts.put(exerciseName, exerciseCounts.getOrDefault(exerciseName, 0) + 1);
+
+                // Print exercise details for debugging
+                System.out.println("Exercise ID: " + workoutExercise.getExerciseId() + ", Exercise Name: " + exerciseName);
+            }
+
+            // Create data for the pie chart
+            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
+            for (Map.Entry<String, Integer> entry : exerciseCounts.entrySet()) {
+                pieChartData.add(new PieChart.Data(entry.getKey(), entry.getValue()));
+            }
+
+            // Print the size of pieChartData for debugging
+            System.out.println("Pie Chart Data Size: " + pieChartData.size());
+
+            // Set the data to the pie chart
+            statsExercisePieChart.setData(pieChartData);
+
+            // Enable legend
+            statsExercisePieChart.setLegendVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getExerciseNameById(int exerciseId) {
+        // Assuming you have a method in your ExerciseTable class to retrieve exercise name by ID
+        Exercise exercise = exerciseTable.getExercise(exerciseId);
+        return (exercise != null) ? exercise.getName() : "";
+    }
+
 
 
 
@@ -245,6 +295,9 @@ public class FormController {
         populateExercisePageCombo();
         refreshTable();
         setDisplayDescriptionLabel();
+
+        //Chart
+        generateExercisesChart();
     }
 
     private void populateWorkoutTableView() {
@@ -442,6 +495,7 @@ public class FormController {
         addExerciseCombo.getItems().clear();
         populateWorkoutPageComboBox();
         workoutExerciseTableView.getItems().clear();
+        generateExercisesChart();
 
     }
 
@@ -528,7 +582,6 @@ public class FormController {
     void statsRefreshClicked(ActionEvent event) {
 
     }
-
 
 
 

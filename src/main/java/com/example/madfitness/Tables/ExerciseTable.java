@@ -63,25 +63,26 @@ public class ExerciseTable implements ExerciseDAO {
     }
 
     @Override
-    public Exercise getExercise(int id) {
-        String query = "SELECT * FROM " + DBConst.TABLE_EXERCISE + " WHERE " +
-                DBConst.EXERCISE_COLUMN_ID + " =" + id;
-        Exercise exercise = new Exercise();
-        try {
-            Statement getExercise = db.getConnection().createStatement();
-            ResultSet data = getExercise.executeQuery(query);
-            data.next();
-            exercise = new Exercise(
-                    data.getInt(DBConst.EXERCISE_COLUMN_ID),
-                    data.getString(DBConst.EXERCISE_COLUMN_NAME),
-                    data.getString(DBConst.EXERCISE_COLUMN_DESCRIPTION),
-                    data.getInt(DBConst.EXERCISE_COLUMN_TYPE),
-                    data.getInt(DBConst.EXERCISE_COLUMN_MUSCLE_GROUP_ID)
-            );
+    public Exercise getExercise(int exerciseId) {
+        String query = "SELECT * FROM " + DBConst.TABLE_EXERCISE + " WHERE " + DBConst.EXERCISE_COLUMN_ID + " = ?";
+        try (PreparedStatement statement = db.getConnection().prepareStatement(query)) {
+            statement.setInt(1, exerciseId);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return new Exercise(
+                        resultSet.getInt(DBConst.EXERCISE_COLUMN_ID),
+                        resultSet.getString(DBConst.EXERCISE_COLUMN_NAME),
+                        resultSet.getString(DBConst.EXERCISE_COLUMN_DESCRIPTION),
+                        resultSet.getInt(DBConst.EXERCISE_COLUMN_TYPE),
+                        resultSet.getInt(DBConst.EXERCISE_COLUMN_MUSCLE_GROUP_ID)
+                );
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return exercise;
+
+        return null;
     }
 
     @Override
@@ -113,54 +114,6 @@ public class ExerciseTable implements ExerciseDAO {
         }
     }
 
-    public ArrayList<DisplayExercise> getDisplayExercises() {
-        ArrayList<DisplayExercise> exercises = new ArrayList<>();
-        String query = """
-                SELECT
-                 exercise.id, 
-                 exercise.name AS exercise_name,
-                 exercise.description,
-                 exercise_type.name AS exercise_type_name,
-                 muscle_group.name AS muscle_group_name
-                FROM exercise
-                JOIN exercise_type ON exercise.exercise_type = exercise_type.id
-                JOIN muscle_group ON exercise.muscle_group_id = muscle_group.id
-                ORDER BY exercise.id ASC
-                """;
-        try {
-            Statement getDisplayExercises = db.getConnection().createStatement();
-            ResultSet data = getDisplayExercises.executeQuery(query);
-            while (data.next()) {
-                exercises.add(new DisplayExercise(
-                        data.getInt("id"),
-                        data.getString("exercise_name"),
-                        data.getString("description"),
-                        data.getString("exercise_type_name"),
-                        data.getString("muscle_group_name")
-                ));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return exercises;
-    }
-
-    public int getExerciseCount(int exercise) {
-        int count = -1;
-        try {
-            PreparedStatement getCount = db.getConnection()
-                    .prepareStatement("SELECT * FROM " + DBConst.TABLE_EXERCISE +
-                                    " WHERE " + DBConst.EXERCISE_COLUMN_NAME
-                                    + " = '" + exercise + "'", ResultSet.TYPE_SCROLL_SENSITIVE,
-                            ResultSet.CONCUR_UPDATABLE);
-            ResultSet data = getCount.executeQuery();
-            data.last();
-            count = data.getRow();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return count;
-    }
 
     public static ExerciseTable getInstance() {
         if (instance == null) {
