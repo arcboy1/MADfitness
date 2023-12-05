@@ -37,7 +37,7 @@
             <Font name="Impact" size="125.0" />
          </font>
       </Label>
-      <Label fx:id="logoLabelBottom" layoutX="454.0" layoutY="138.0" prefHeight="47.0" prefWidth="118.0" text="FITNESS" textFill="WHITE" AnchorPane.leftAnchor="454.0" AnchorPane.rightAnchor="452.0" AnchorPane.topAnchor="138.0">
+      <Label fx:id="logoLabelBottom" alignment="CENTER" contentDisplay="CENTER" layoutX="415.0" layoutY="138.0" prefHeight="47.0" prefWidth="183.0" text="FITNESS" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="138.0">
          <font>
             <Font name="Malgun Gothic" size="32.0" />
          </font>
