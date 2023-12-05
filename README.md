@@ -75,7 +75,7 @@ On the Manage Workouts Page, users can view and edit their past workout sessions
 
 ### Exercises Page
 
-The Exercises Page offers a comprehensive database of exercises. Users can search, view details, and add exercises to their workout log.
+The Exercises Page offers a comprehensive database of exercises. Users can view the description of each exercise, and add exercises to their workout log.
 
 ### Statistics Page
 
