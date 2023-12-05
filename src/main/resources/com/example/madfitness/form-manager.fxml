@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.0" prefWidth="1024.0" style="-fx-background-color: #18191A;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.madfitness.Controller.FormController">
+   <children>
+      <TabPane layoutY="101.0" prefHeight="603.0" prefWidth="1024.0" style="-fx-background-color: #3f3f3f; -fx-tab-max-height: 25; -fx-tab-min-width: 232;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="101.0">
+        <tabs>
+          <Tab fx:id="viewWorkoutTab" closable="false" style="-fx-background-color: #04a2d9; -fx-font-family: impact; -fx-font-size: 20;" text="New Workout">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.5058708414872799" layoutX="485.0" layoutY="136.0" prefHeight="570.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #3f3f3f;">
+                                 <children>
+                                    <Label fx:id="addExerciseLabel" layoutX="55.0" layoutY="86.0" text="Exercise Name" textFill="WHITE">
+                                       <font>
+                                          <Font name="Impact" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="addExerciseCombo" layoutX="204.0" layoutY="81.0" prefHeight="33.0" prefWidth="232.0" />
+                                    <TextField fx:id="setsField" layoutX="99.0" layoutY="159.0" prefHeight="32.0" prefWidth="42.0" />
+                                    <TextField fx:id="repsField" layoutX="237.0" layoutY="159.0" prefHeight="32.0" prefWidth="42.0" />
+                                    <TextField fx:id="weightField" layoutX="422.0" layoutY="159.0" prefHeight="32.0" prefWidth="64.0" />
+                                    <Label fx:id="setsLabel" layoutX="45.0" layoutY="163.0" text="Sets" textFill="WHITE">
+                                       <font>
+                                          <Font name="Impact" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="repsLabel" layoutX="179.0" layoutY="162.0" text="Reps" textFill="WHITE">
+                                       <font>
+                                          <Font name="Impact" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="weightLabel" layoutX="304.0" layoutY="162.0" text="Weight (lbs)" textFill="WHITE">
+                                       <font>
+                                          <Font name="Impact" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="addToWorkoutButton" layoutX="159.0" layoutY="257.0" mnemonicParsing="false" onAction="#addToWorkoutClicked" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #04a2d9;" text="ADD TO WORKOUT" textFill="WHITE">
+                                       <font>
+                                          <Font name="Impact" size="17.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="finishWorkoutButton" layoutX="159.0" layoutY="478.0" mnemonicParsing="false" onAction="#finishWorkoutClicked" prefHeight="41.0" prefWidth="198.0" style="-fx-background-color: #04a2d9;" text="FINISH WORKOUT" textFill="WHITE">
+                                       <font>
+                                          <Font name="Impact" size="24.0" />
+                                       </font>
+                                    </Button>
+                                    <Label fx:id="timeLabel" layoutX="112.0" layoutY="211.0" text="Duration  (minutes)" textFill="WHITE">
+                                       <font>
+                                          <Font name="Impact" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="timeField" layoutX="284.0" layoutY="206.0" prefHeight="32.0" prefWidth="52.0" />
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <TableView fx:id="exerciseTableView" layoutX="183.0" layoutY="66.0" prefHeight="568.0" prefWidth="502.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columns>
+                                        <TableColumn fx:id="exerciseColumn" prefWidth="160.0" text="Exercise" />
+                                        <TableColumn fx:id="setsColumn" prefWidth="62.0" text="Sets" />
+                                          <TableColumn fx:id="repsColumn" prefWidth="48.0" text="Reps" />
+                                          <TableColumn fx:id="weightColumn" prefWidth="119.0" text="Weight(lbs)" />
+                                          <TableColumn fx:id="timeColumn" prefWidth="112.0" text="Duration(mins)" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab fx:id="addWorkoutTab" closable="false" style="-fx-background-color: #04a2d9; -fx-font-family: impact; -fx-font-size: 20;" text="Manage Workouts">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.7411971830985915" layoutX="403.0" layoutY="126.0" orientation="VERTICAL" prefHeight="570.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <SplitPane dividerPositions="0.2519607843137255" layoutX="411.0" layoutY="95.0" prefHeight="418.0" prefWidth="1022.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="478.0">
+                                             <children>
+                                                <TableView fx:id="workoutTableView" layoutX="122.0" layoutY="43.0" prefHeight="416.0" prefWidth="312.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="workoutIdColumn" prefWidth="109.0" text="Workout ID" />
+                                                    <TableColumn fx:id="workoutDateColumn" prefWidth="144.0" text="Workout Date" />
+                                                  </columns>
+                                                </TableView>
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                             <children>
+                                                <TableView fx:id="workoutExerciseTableView" layoutX="180.0" layoutY="35.0" prefHeight="416.0" prefWidth="760.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="workoutExerciseNameColumn" prefWidth="100.0" text="Exercise Name" />
+                                                    <TableColumn fx:id="workoutExerciseSetsColumn" prefWidth="63.0" text="Sets" />
+                                                      <TableColumn fx:id="workoutExerciseRepsColumn" prefWidth="68.0" text="Reps" />
+                                                      <TableColumn fx:id="workoutExerciseWeightColumn" prefWidth="116.0" text="Weight(lbs)" />
+                                                      <TableColumn fx:id="workoutExerciseTypeColumn" prefWidth="147.0" text="Exercise Type" />
+                                                      <TableColumn fx:id="workoutExerciseMuscleGroupColumn" prefWidth="143.0" text="Muscle Group" />
+                                                      <TableColumn fx:id="workoutExerciseDurationColumn" prefWidth="122.0" text="Duration(mins)" />
+                                                  </columns>
+                                                </TableView>
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #3f3f3f;">
+                                 <children>
+                                    <Label fx:id="deleteWorkoutLabel" layoutX="110.0" layoutY="57.0" text="Enter Workout ID" textFill="WHITE">
+                                       <font>
+                                          <Font name="Impact" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="deleteWorkoutField" layoutX="256.0" layoutY="52.0" prefHeight="32.0" prefWidth="106.0" />
+                                    <Button fx:id="deleteWorkoutButton" layoutX="447.0" layoutY="48.0" mnemonicParsing="false" onAction="#deleteWorkoutClicked" prefHeight="41.0" prefWidth="198.0" style="-fx-background-color: #04a2d9;" text="DELETE WORKOUT" textFill="WHITE">
+                                       <font>
+                                          <Font name="Impact" size="20.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="viewWorkoutDetailsButton" layoutX="723.0" layoutY="48.0" mnemonicParsing="false" onAction="#viewWorkoutClicked" prefHeight="41.0" prefWidth="246.0" style="-fx-background-color: #04a2d9;" text="VIEW WORKOUT DETAILS" textFill="WHITE">
+                                       <font>
+                                          <Font name="Impact" size="20.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="exerciseTab" closable="false" style="-fx-background-color: #04a2d9; -fx-font-family: impact; -fx-font-size: 20;" text="Exercises">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.5812133072407045" layoutX="36.0" layoutY="14.0" prefHeight="577.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="575.0" prefWidth="559.0" style="-fx-background-color: #3f3f3f;">
+                                 <children>
+                                    <TextField fx:id="exerciseNameField" layoutX="196.0" layoutY="68.0" prefHeight="32.0" prefWidth="234.0" />
+                                    <Label fx:id="exerciseNameLabel" layoutX="50.0" layoutY="72.0" text="Exercise Name" textFill="WHITE">
+                                       <font>
+                                          <Font name="Impact" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="exerciseDescriptionField" alignment="TOP_LEFT" layoutX="196.0" layoutY="126.0" prefHeight="88.0" prefWidth="234.0" />
+                                    <Label fx:id="exerciseDescriptionLabel" layoutX="74.0" layoutY="129.0" text="Description" textFill="WHITE">
+                                       <font>
+                                          <Font name="Impact" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="workoutTypeCombo" layoutX="196.0" layoutY="239.0" prefHeight="31.0" prefWidth="234.0" />
+                                    <Label fx:id="workoutTypeLabel" layoutX="58.0" layoutY="243.0" text="Exercise Type" textFill="WHITE">
+                                       <font>
+                                          <Font name="Impact" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox fx:id="muscleGroupCombo" layoutX="196.0" layoutY="305.0" prefHeight="31.0" prefWidth="234.0" />
+                                    <Label fx:id="muscleGroupLabel" layoutX="58.0" layoutY="309.0" text="Muscle Group" textFill="WHITE">
+                                       <font>
+                                          <Font name="Impact" size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="addExerciseButton" layoutX="159.0" layoutY="368.0" mnemonicParsing="false" onAction="#addExerciseClicked" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #04a2d9;" text="ADD EXERCISE" textFill="WHITE">
+                                       <font>
+                                          <Font name="Impact" size="21.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <SplitPane dividerPositions="0.6352530541012217" layoutX="154.0" layoutY="188.0" orientation="VERTICAL" prefHeight="575.0" prefWidth="425.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                             <children>
+                                                <ListView fx:id="exerciseListView" layoutX="66.0" prefHeight="285.0" prefWidth="423.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #3f3f3f;">
+                                             <children>
+                                                <Label fx:id="displayDescriptionLabel" alignment="CENTER" layoutX="31.0" layoutY="25.0" prefHeight="158.0" prefWidth="369.0" text="Description for exercise will go here when clicked in list above" textFill="WHITE" wrapText="true">
+                                                   <font>
+                                                      <Font name="Impact" size="20.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="progressTab" closable="false" style="-fx-background-color: #04a2d9; -fx-font-family: impact; -fx-font-size: 20;" text="Statistics">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <PieChart fx:id="statsExercisePieChart" layoutX="125.0" layoutY="55.0" prefHeight="488.0" prefWidth="775.0" style="-fx-background-color: white;" />
+                        <Label fx:id="statsLabel" layoutX="431.0" layoutY="14.0" prefHeight="41.0" prefWidth="163.0" text="Exercise Statistics" textFill="WHITE">
+                           <font>
+                              <Font name="Impact" size="20.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Label fx:id="logoLabelTop" layoutX="364.0" layoutY="-12.0" prefHeight="88.0" prefWidth="175.0" text="MAD" textFill="#04a2d9">
+         <font>
+            <Font name="Impact" size="96.0" />
+         </font>
+      </Label>
+      <Label fx:id="logoLabelBottom" layoutX="533.0" layoutY="23.0" text="FITNESS" textFill="WHITE">
+         <font>
+            <Font name="Malgun Gothic" size="35.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
