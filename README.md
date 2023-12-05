@@ -83,16 +83,16 @@ The Statistics Page provides visual representations of the user's workout data, 
 
 ## Screenshots and Animated GIFs
 
-### Database Login Page 
+### Database Login Page
 <img width="1016" alt="Screenshot 2023-12-05 at 4 14 19 AM" src="https://github.com/arcboy1/MADfitness/assets/146121270/1bb84d88-8a84-417e-9565-42939c9f6a5e">
 
-### New Workout Page 
+### New Workout Page
 ![ezgif com-video-to-gif](https://github.com/arcboy1/MADfitness/assets/146121270/adf24058-1c01-4b89-820b-74d01a3c7b74)
 
-### Manage Workouts Page 
+### Manage Workouts Page
 ![ezgif com-video-to-gif (1)](https://github.com/arcboy1/MADfitness/assets/146121270/13aebf24-d7d7-4e94-95d7-186a5690abce)
 
-### Exercises Page 
+### Exercises Page
 ![ezgif com-video-to-gif (2)](https://github.com/arcboy1/MADfitness/assets/146121270/f0b9259c-904a-4126-ad8f-42ea017f5c1d)
 
 
